@@ -22,7 +22,22 @@
 
     <h2>Variables</h2>
       <p>Variable declarations are marked with <code class="language-javascript">var</code>, <code class="language-javascript">let</code>, or <code class="language-javascript">const</code>; <code class="language-javascript">let</code> replaces <code class="language-javascript">var</code> in ES6. Variables declared with <code class="language-javascript">var</code> and <code class="language-javascript">let</code> can be declared without an initial value, or have their value be reasigned. In contrast, <code class="language-javascript">const</code> must have an initial variable, and its value cannot be reasigned. Variables cannot begin with a number, as it will throw a syntax error. The contents within the value of a variable declared with <code class="language-javascript">const</code> can be modified if it is an array or an object, but cannot be replaced through a reasigned array or object. Use <code class="language-javascript">const</code> for values that should not change, and <code class="language-javascript">let</code> everywhere else. This practice will make one's code more secure and easy to read, as it lets other devs know that a particular value is immutable.</p>
+
+      <p>The reason <code class="language-javascript">var</code> should be avoided is its global mutability at the block level. If the same variable name is declared with <code class="language-javascript">var</code> in the global scope, and within a block-level level scope, the block level can then change the global level. Both <code class="language-javascript">let</code> and <code class="language-javascript">const</code> mitigate this situation. the following code-block illustrates.</p>
       
+<pre class="line-numbers"><code class="language-javascript">// Global Scope
+var a = 1;
+let b = 2;
+const c = 3;
+
+// Block-level scope should not change global variables
+for(var a = 0; a &lt; 5; a++){
+  console.log(`looping ${a}`);
+}
+
+// Global var a is now 5
+console.log('Global Scope:', a, b, c); // 'Global Scope: 5 2 3'</code></pre>
+
       <p>An opening bling <code class="language-javascript">$someVar</code> is generally reserved for marking variables in JQuery in DOM manipulation, as the DOM uses the bling as a global identifier. An opening underscore <code class="language-javascript">_someVar</code> can also be used, but is normally reserved for private variables. Multi-word variables use the following conventions.</p>
 
       <ul>

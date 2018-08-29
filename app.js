@@ -449,5 +449,14 @@ val = window.navigator.platform; // identify OS
 val = window.navigator.vendor; // company of browser; e.g., Google Inc.
 val = window.navigator.language; // identify human language of browser
 
+// SCOPE: why var is a bad idea
+var a = 1;
+let b = 2;
+const c = 3;
 
-console.log(val);
+// block level scope such as function or loop should not change global variables, but that is exactly what happens with var!
+for(var a = 0; a < 5; a++){
+  console.log(`looping ${a}`);
+}
+
+console.log('Global Scope:', a, b, c); // Global var a is now 5
