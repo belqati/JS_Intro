@@ -325,3 +325,76 @@ todo.add();
 todo.edit(56);
 todo.delete(10);
 
+console.clear();
+
+// FOR LOOP
+for(let i = 1; i <= 7; i++){
+  if(i === 3){
+    console.log(`${i} is my favorite number!`);
+    continue; // skips the rest of this iteration, and continues immediately to the next iteration
+  };
+  if(i === 5){
+    console.log(`${i} breaks the loop.`)
+    break; // stops all iterations immediately
+  }
+  console.log(i);
+}
+
+// WHILE LOOP
+let i = 1;
+while(i <= 5){
+  console.log(i);
+  i++;
+}
+
+// DO WHILE LOOP
+// always fires at least once, even if condition is outside of given parameters
+i = 100;
+do {
+  console.log(`Number ${i}`);
+  i++;
+}
+while(i <= 5);
+
+// loop through an array
+let cars = ['Tesla', 'BMW', 'Mercedes', 'Ferrari', 'Bugatti'];
+
+for(let i = 0; i < cars.length; i++){
+  console.log(cars[i]);
+}
+
+// better to use .forEach() method
+// takes three arguments: iterator, index, and whole array
+cars.forEach(function(car, index, array){
+  console.log(`${index} : ${car}`);
+  console.log(array);
+});
+
+// FOR IN LOOP: good for looping through the key:value pairs of an object
+let user = {
+  first: 'Jack',
+  last: 'Sparrow',
+  age: 56
+}
+
+for(let x in user){
+  console.log(`${x} : ${user[x]}`)
+}
+
+// .map() method returns something other than what it was used with, in this case it returns a simple array from an array of objects
+let users = [
+  {id: 243, name: 'Starstruck'},
+  {id: 476, name: 'Moonbeam'},
+  {id: 807, name: 'Meteorshower'},
+  {id: 346, name: 'Sunbeam'}
+];
+
+let userID = users.map(function(user){
+  return user.id;
+});
+console.log(userID);
+
+users.forEach(function(id){
+  console.log(id.name)
+});
+
