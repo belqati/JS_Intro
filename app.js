@@ -191,11 +191,82 @@ birthday.setHours(16); // 4pm and so forth for minutes, etc.
 // console.log(val);
 
 // test variable whether undefined or non-existent
-let id = 'someID';
+// let id = 'someID';
 
 if(typeof id !== 'undefined'){
   console.log(`The ID is ${id}.`)
 } else {
-  console.log(`ID does not exist or is undefined.`)
+  // console.log(`ID does not exist or is undefined.`)
 }
+
+// constructor function
+function Person(name, age){
+  this.name = name;
+  this.age = age;
+}
+
+// create new objects
+let tony = new Person('Tony', 9);
+let monica = new Person('Monica', 18);
+let giovani = new Person('Giovani', 35);
+
+// populate array with new objects
+let people = [tony, monica, giovani];
+
+// loop through array with logical operators
+people.forEach(function(name){
+  if(name.age > 0 && name.age <= 12){
+    console.log(`${name.name} is ${name.age} years old, and is legally a child.`);
+  } else if(name.age >= 13 && name.age <= 19){
+    console.log(`${name.name} is ${name.age} years old, and is considered a teenager by Western standards.`);
+  } else {
+    console.log(`${name.name} is ${name.age} years old, and is a legal adult.`)
+  }
+});
+
+// ternary operation
+people.forEach(function(name){
+  name.age >= 18 ? console.log(`${name.name} is qualified to vote.`) : console.log(`${name.name} is too young to vote in the US`);
+
+  name.age >= 21 ? console.log(`${name.name} is qualified to drink.`) : console.log(`${name.name} is too young to drink in the US`);
+});
+
+// braces not necessary, but good to use them anyway
+if(giovani.age <= 64)
+  console.log(`${giovani.name} is probably not retired.`);
+else
+  console.log(`${giovani.name} may be retired.`)
+
+// SWITCHES: use in place of multiple else if statements
+let day;
+
+switch (new Date().getDay()) {
+  case 0:
+    day = 'Sunday';
+    break;
+  case 1:
+    day = 'Monday';
+    break;
+  case 2:
+    day = 'Tuesday';
+    break;
+  case 3:
+    day = 'Wednesday';
+    break;
+  case 4:
+    day = 'Thursday';
+    break;
+  case 5:
+    day = 'Friday';
+    break;
+  case 6:
+    day = 'Saturday';
+    break;
+
+  default:
+    day = 'strangely unknown.'
+    break;
+}
+
+console.log(`Today is ${day}`);
 
