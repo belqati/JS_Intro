@@ -398,3 +398,6 @@ users.forEach(function(id){
   console.log(id.name)
 });
 
+console.clear();
+
+// WINDOW METHODS / OBJECTS / PROPERTIES
