@@ -401,3 +401,53 @@ users.forEach(function(id){
 console.clear();
 
 // WINDOW METHODS / OBJECTS / PROPERTIES
+
+// alert, prompt, and confirm no longer used, best to use Bootstrap alerts, etc.
+// alert: note that alert() and window.alert() are the same, etc.
+// alert('hello world!');
+// window.alert('hi again');
+
+// prompt: get info from user via pop-up window
+// let input = prompt();
+// console.log(input);
+
+// confirm: confirm whether an action is desired or not via pop-up window
+// if(confirm('Are you sure?')){
+//   console.log('user confirms action');
+// } else {
+//   console.log('user declines action');
+// }
+
+// get size and position elements for interaction with user, such as animations at scroll points etc.
+// outer height and width of browser window
+val = window.outerHeight;
+val = window.outerWidth;
+
+// inner height and width: scrollbars and console etc. not included
+val = window.innerHeight;
+val = window.innerWidth;
+
+// scroll points: location of scroll
+val = window.scrollY; // vertical
+val = window.scrollX; // horizontal
+
+// LOCATION OBJECT
+val = window.location;
+val = window.location.hostname; // domain name of server
+val = window.location.href; // entire url; can be used to redirect
+val = window.location.search; // extracts search params from url
+
+// HISTORY OBJECT: browser history
+val = window.history.length; // number of sites in history for page
+// val = window.history.go(-1) // go back once
+
+// NAVIGATOR OBJECT: relates to the browser itself, e.g., Chrome, Firefox, etc.; named after old Netscape Navigator
+val = window.navigator;
+val = window.navigator.appVersion; // browser type and version
+val = window.navigator.userAgent; // ditto
+val = window.navigator.platform; // identify OS
+val = window.navigator.vendor; // company of browser; e.g., Google Inc.
+val = window.navigator.language; // identify human language of browser
+
+
+console.log(val);
