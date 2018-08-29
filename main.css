@@ -1,0 +1,29 @@
+body {
+  font-family: Ubuntu;
+  background-color: #100055;
+  color: #FFC096;
+}
+
+a {
+  color: #FFE7D8;
+}
+
+/*mod Prism background*/
+pre[class*=language-] {
+  border-radius: 5px;
+}
+
+table, tr, td {
+  border: 1px solid;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+th {
+  text-align: center;
+}
+
+kbd {
+  background-color: #7D71B3;
+}
+

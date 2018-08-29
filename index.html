@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JS Sandbox: Section 2</title>
+  <link rel="icon" type="image/x-icon" href="bqd_01-4.ico">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu:400" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.14.0/themes/prism.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.14.0/plugins/line-numbers/prism-line-numbers.min.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body class="container-fluid">
+  <h1>JS Sandbox: Section 2</h1>
+    <p>This file incorporates material from the introductory JS lessons from the course <a href="https://www.udemy.com/modern-javascript-from-the-beginning/" target="blank">Modern JavaScript from the Beginning</a> by Brad Traversy. The notes incorporate only material I found to be of interest.</p>
+
+    <h2>The Console</h2>
+      <p>To open the console in Chrome use either <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>J</kbd> or <kbd>F12</kbd>. In addition to <code class="language-javascript">console.log()</code>, one can <code class="language-javascript">console.table({key:value, key:value})</code> to produce a formatted table, <code class="language-javascript">console.error('some error')</code> to output an error, <code class="language-javascript">console.warning('some warning')</code> to output a warning, <code class="language-javascript">console.time('timing') &hellip; console.timeEnd('timing')</code> to output the duration of a bracketed operation, and <code class="language-javascript">console.clear()</code> to clear the console.</p>
+
+    <h2>Variables</h2>
+      <p>Variable declarations are marked with <code class="language-javascript">var</code>, <code class="language-javascript">let</code>, or <code class="language-javascript">const</code>; <code class="language-javascript">let</code> replaces <code class="language-javascript">var</code> in ES6. Variables declared with <code class="language-javascript">var</code> and <code class="language-javascript">let</code> can be declared without an initial value, or have their value be reasigned. In contrast, <code class="language-javascript">const</code> must have an initial variable, and its value cannot be reasigned. Variables cannot begin with a number, as it will throw a syntax error. The contents within the value of a variable declared with <code class="language-javascript">const</code> can be modified if it is an array or an object, but cannot be replaced through a reasigned array or object. Use <code class="language-javascript">const</code> for values that should not change, and <code class="language-javascript">let</code> everywhere else. This practice will make one's code more secure and easy to read, as it lets other devs know that a particular value is immutable.</p>
+      
+      <p>An opening bling <code class="language-javascript">$someVar</code> is generally reserved for marking variables in JQuery in DOM manipulation, as the DOM uses the bling as a global identifier. An opening underscore <code class="language-javascript">_someVar</code> can also be used, but is normally reserved for private variables. Multi-word variables use the following conventions.</p>
+
+      <ul>
+        <li><code class="language-javascript">someVariable</code>: camelCase; recommended for JS in general</li>
+        <li><code class="language-javascript">some_variable</code>: snake_case; common in PHP (double-click will highlight entire variable)</li>
+        <li><code class="language-javascript">SomeVariable</code>: PascalCase; marks constructor functions and ES6 classes</li>
+        <li><code class="language-javascript">some-variable</code>: lisp-case, kebab-case, spinal-case, etc. (no conventional name); common in URLs, CSS, etc. (double-click will not highlight entire variable)</li>
+        <li><code class="language-javascript">somevariable</code>: alllowercase is not recommended</li>
+      </ul>
+
+    <h2>datatypes</h2>
+      <p>In JS there are two categories that incorporate all datatypes: primitive and reference. Primitive datatypes are stored directly in the location the variable accesses on the stack. Reference datatypes are accessed by reference (not directly assigned to their variable), and are all objects stored on the heap via dynamically allocated memory (e.g., point to a specific memory location). Reference datatypes include objects, arrays, functions, dates, and anything else that can be stored. There are six primitive datatypes.</p>
+
+      <ul>
+        <li><code class="language-javascript">String</code></li>
+        <li><code class="language-javascript">Number</code> All integers, decimals, floats, etc. are treated as numbers in JS (unlike some languages)</li>
+        <li><code class="language-javascript">Boolean</code></li>
+        <li><code class="language-javascript">Null</code></li>
+        <li><code class="language-javascript">Undefined</code></li>
+        <li><code class="language-javascript">Symbol</code> A feature added to ES6.</li>
+      </ul>
+
+      <p>JS is a dynamically typed language, meaning that datatypes are associated with their value rather than their variable. This environment allows for a variable with multiple datatypes. Statically typed languages like Java, C++, and C# must first declare a variable's datatype before giving it a value.</p>
+
+      <h3>Type Conversion/Coercion</h3>
+        <p>The ability to convert a variable's datatype is desireable. For example, all data provided by a form are strings, so numbers must first be converted to a number type if number manipulation is desired. JS supports three types: to string, to boolean, and to number (<a href="https://medium.freecodecamp.org/js-type-coercion-explained-27ba3d9a2839" target="blank">see this post for more details</a>). Conversion, or coercion, is explicit or implicit. In the former, the dev explicitly converts a datatype. In the latter, JS handles the conversion. Explicit coercion is handled with the following methods. <code class="language-javascript">String()</code> and <code class="language-javascript">.toString()</code> will convert a datatype to a string. <code class="language-javascript">Number()</code> will convert a datatype to an integer if possible, where <code class="language-javascript">String(false)</code> and <code class="language-javascript">String(null)</code> return <code class="language-javascript">0</code>, but <code class="language-javascript">String('someString')</code> returns <code class="language-javascript">NaN</code>, etc. The methods <code class="language-javascript">parseInt()</code> and <code class="language-javascript">parseFloat()</code> work only with strings representing numbers, where the first converts to an integer, and the latter to a decimal. <code class="language-javascript">Boolean()</code> converts any datatype to truthy or falsey values: e.g., <code class="language-javascript">Boolean('')</code> returns <code class="language-javascript">false</code>, while <code class="language-javascript">Boolean('someString')</code> returns <code class="language-javascript">true</code>. The following elements are falsey: <code class="language-javascript">''</code>, <code class="language-javascript">0</code>, <code class="language-javascript">-0</code>, <code class="language-javascript">NaN</code>, <code class="language-javascript">null</code>, <code class="language-javascript">undefined</code>, and <code class="language-javascript">false</code>. Everything else is truthy.</p>
+
+        <p>Implicit coercion happens under a number of circumstances. An undesireable example inadvertantly mixes datatypes and returns an incorrect result: e.g., <code class="language-javascript">'6' + 5</code> returns <code class="language-javascript">'65'</code> rather than <code class="language-javascript">11</code> or <code class="language-javascript">'11'</code>, where JS inherently converts the number to a string and then concatenates the output. Implicit coercion is helpful in a number of circumstances, such as <code class="language-javascript">==</code> or <code class="language-javascript">!=</code> for loose equality versus the strict <code class="language-javascript">===</code>, or <code class="language-javascript">if('someValueExists') {doSomething}</code>.</p>
+
+    <h2>Template Literals</h2>
+      <p>Template literals were introduced in ES6, and provide a smoother way of creating template variables in JS and displaying them in HTML. Its basic syntax is simple: <code class="language-javascript">`&lt;html>${someVar}&lt;/html>`</code>, where the doubled diacritical grave accent brackets the HTML and variables accross multiple lines. The following code-block illustrates. Note that as it is written, it will overwrite any existing <code class="language-javascript">.html</code> file associated with the <code class="language-javascript">.js</code> file.</p>
+        
+<pre class="line-numbers"><code class="language-javascript">const firstName = 'Janeel';
+const lastName = 'Doe';
+const age = 39;
+const job = 'Fullstack Developer';
+const city = 'Chicago';
+let html;
+
+function message(){
+  return 'Hi there!'
+}
+
+html = `
+&lt;ul>
+  &lt;li>Name: ${firstName} ${lastName}&lt;/li>
+  &lt;li>Age: ${age}&lt;/li>
+  &lt;li>Job: ${job}&lt;/li>
+  &lt;li>City: ${city}&lt;/li>
+  &lt;li>Function: ${message()}&lt;/li>
+  &lt;li>Math Operation: ${20 % 3}&lt;/li>
+  &lt;li>Ternary Operation: ${age >= 21 ? 'Of Age' : 'Underage'}&lt;/li>
+&lt;/ul>
+`;
+
+document.body.innerHTML = html; // replaces existing html with unordered list</code></pre>
+
+    <h2>Conditionals</h2>
+      <p>The <code class="language-javascript">if(){}</code> statement is useful for error handling and troubleshooting variables. One can simply check whether a variable exists using <code class="language-javascript">if('someVar'){doSomething}</code>, but the check will throw an error if the variable does not exist. Using <code class="language-javascript">typeof</code> provides a workaround that will not throw an error, illustrated in the following code-block. Leaving <code class="language-javascript">id</code> unassigned or commenting it out returns the same result: 'ID does not exist or is undefined.'</p>
+
+<pre class="line-numbers"><code class="language-javascript">let id;
+
+if(typeof id !== 'undefined'){
+  console.log(`The ID is ${id}.`)
+} else {
+  console.log('ID does not exist or is undefined.')
+}</code></pre>
+
+</body>
+
+<footer>
+  <script type="text/javascript" src="app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.14.0/prism.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.14.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+</footer>
+</html>
