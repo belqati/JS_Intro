@@ -91,6 +91,21 @@ if(typeof id !== 'undefined'){
   console.log('ID does not exist or is undefined.')
 }</code></pre>
 
+    <h2>Functions</h2>
+      <p>In ES5 it is necessary to use <code class="language-javascript">if(){}</code> with <code class="language-javascript">typeof</code> to identify undefined arguments, and then assign them a default value. ES6 makes this process much simpler, as illustrated in the following code-block</p>
+
+<pre class="line-numbers"><code class="language-javascript">function greetings(first = 'John', last = 'Doe'){
+  // rather than if(typeof first === 'undefined'){first = 'John'};
+  return `Greetings ${first} ${last}!`
+}
+console.log(greetings()); // 'Greetings John Doe!'</code></pre>
+
+      <p>Besides function declarations and expressions, we also have 'immediately invoked function expressions,' or IIFE for short (pronounced 'iffy'; <a href="https://medium.com/@vvkchandra/essential-javascript-mastering-immediately-invoked-function-expressions-67791338ddc6" target="blank">see here for discussion</a>). An IIFE fires immediately, and is useful for holding private variables and private functions. Global variables that should not be modified are safe in an IFFE. They also work well for modular programming patterns. The following code-block illustrates; they possess other syntax as well.</p>
+
+<pre class="line-numbers"><code class="language-javascript">(function(first, last){
+  console.log(`Hi there ${first} ${last}, I'm an IIFE!`)
+}('Mario', 'Bro')); // 'Hi there Mario Bro, I'm an IIFE!'</code></pre>
+
 </body>
 
 <footer>

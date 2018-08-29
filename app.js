@@ -270,3 +270,58 @@ switch (new Date().getDay()) {
 
 console.log(`Today is ${day}`);
 
+// function declarations
+// handle unspecified arguments in ES5, or returns 'undefined'
+function greet(first, last){
+  if(typeof first === 'undefined'){first = 'John'};
+  if(typeof last === 'undefined'){last = 'Doe'};
+  return `Howdy ${first} ${last}!`
+}
+console.log(greet('Donkey', 'Kong'));
+
+// ES6 makes this easier
+function greetings(first = 'John', last = 'Doe'){
+  return `Greetings ${first} ${last}!`
+}
+console.log(greetings()); // 'Greetings John Doe!'
+
+// function expressions
+let square = function(x = 0){
+  return x*x;
+}
+console.log(square());
+
+// immediately invoked function expressions (IIFE, 'iffy')
+// many ways to pattern it, a few examples follow
+(function(first, last){
+  console.log(`Hi there ${first} ${last}, I'm an IIFE!`)
+}('Mario', 'Bro'));
+
+(function(first, last){
+  console.log(`Hi there ${first} ${last}, I'm an IIFE!`)
+})('Mariana', 'Sis');
+
+!function(first, last){
+  console.log(`Hi there ${first} ${last}, I'm an IIFE!`)
+}('Turtle', 'Man');
+
+// PROPERTY METHODS: any function within an object
+// assigned within an object
+let todo = {
+  add: function(){
+    console.log('Add todo …')
+  },
+  edit: function(id){
+    console.log(`Edit todo ${id} …`)
+  }
+};
+
+// assigned outside the object
+todo.delete = function(id){
+  console.log(`todo ${id} deleted`)
+};
+
+todo.add();
+todo.edit(56);
+todo.delete(10);
+
