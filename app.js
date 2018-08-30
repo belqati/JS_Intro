@@ -460,3 +460,31 @@ for(var a = 0; a < 5; a++){
 }
 
 console.log('Global Scope:', a, b, c); // Global var a is now 5
+console.clear();
+
+// DOM MANIPULATION AND EVENTS
+val = document; // = window.document object
+val = document.all; // html collection for entire document: array-like formatting, but we cannot use array methods
+val = document.all[12]; // access via index position
+val = document.all.length; // number of elements in the DOM
+val = document.body; // access some specific elements directly; not best method, better to use query selectors
+val = document.domain; // server host
+val = document.URL; // full url address; note all caps
+val = document.characterSet; // font encoding of document
+val = document.contentType; // text/html
+val = document.links[0]; // access specific link
+val = document.scripts; // collection of all scripts, access specific via index
+val = document.scripts[1].getAttribute('src'); // access attribute for specific script tag
+
+let scripts = document.scripts; // collection, not an array
+let scriptsArr = Array.from(scripts); // convert collection to array
+
+scriptsArr.forEach(function(script){
+  console.log(script.getAttribute('src'));
+});
+
+let links = document.links; // collection, not an array
+let linksArr = Array.from(links); // convert collection to array
+
+console.log(linksArr);
+console.clear();

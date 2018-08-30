@@ -15,7 +15,7 @@
 
 <body class="container-fluid">
   <h1>JS Sandbox: Section 2</h1>
-    <p>This file incorporates material from the introductory JS lessons from the course <a href="https://www.udemy.com/modern-javascript-from-the-beginning/" target="blank">Modern JavaScript from the Beginning</a> by Brad Traversy. The notes incorporate only material I found to be of interest.</p>
+    <p>This file incorporates material from the introductory JS lessons from the course <a href="https://www.udemy.com/modern-javascript-from-the-beginning/" target="blank">Modern JavaScript from the Beginning</a> by Brad Traversy. The notes incorporate only material I found to be of interest. Brad's stated purpose of the course is to help web developers become comfortable enough with JS to move completely away from JQuery (except as a dependency), and be better prepared for using frameworks such as Angular or React.</p>
 
     <h2>The Console</h2>
       <p>To open the console in Chrome use either <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>J</kbd> or <kbd>F12</kbd>. In addition to <code class="language-javascript">console.log()</code>, one can <code class="language-javascript">console.table({key:value, key:value})</code> to produce a formatted table, <code class="language-javascript">console.error('some error')</code> to output an error, <code class="language-javascript">console.warning('some warning')</code> to output a warning, <code class="language-javascript">console.time('timing') &hellip; console.timeEnd('timing')</code> to output the duration of a bracketed operation, and <code class="language-javascript">console.clear()</code> to clear the console.</p>
@@ -126,6 +126,9 @@ console.log(greetings()); // 'Greetings John Doe!'</code></pre>
 
     <h2>The Window Object</h2>
       <p>The <code class="language-javascript">window</code> is the global object in client-side JS, regardless of browser. It contains size and scroll information that is useful for firing animations at key points. The <code class="language-javascript">window.location</code> object contains the domain name of the server, search parameters, and so forth. The <code class="language-javascript">window.history</code> object contains navigation history such as number of pages visited and in what order. The <code class="language-javascript">window.navigator</code> object is useful for identifying a client's browser type and version, their human language, their OS, etc.</p>
+
+    <h2>DOM Manipulation and Events</h2>
+      <p>The document object model (DOM) is essentially a structured representation of an HTML document, and can be thought of as a tree of elements or nodes created by the browser (e.g., all tags such as <code class="language-javascript">&lt;html></code>, <code class="language-javascript">&lt;body></code>, <code class="language-javascript">&lt;h1></code>, etc.). All of these are located within the <code class="language-javascript">window.document</code> object. The DOM is easily manipulated with vanilla JS, as it each node is an object with its own set of properties and methods. As such, using the JQuery library to manipulate the DOM "is kind of like using a sledgehammer to kill a mosquito." Today's vanilla JS just as capable, and is faster.</p>
 
 </body>
 
