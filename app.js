@@ -582,5 +582,60 @@ liOdd.forEach(function(li){
   li.style.margin = '3px 0 3px 0';
 });
 
+console.log(lis);
+console.clear();
 
-console.log(lis)
+// TRAVERSING THE DOM
+let ul = document.querySelector('ul');
+let li = document.querySelector('li');
+
+val = ul.childNodes; // node list
+val = ul.childNodes[0]; // returns 'text' = line break between li
+val = ul.childNodes[1]; // returns first li
+val = ul.childNodes[1].nodeName; // LI
+val = ul.childNodes[0].nodeName; // #text
+val = ul.childNodes[3].nodeType; // 1
+
+// nodeType returns a number according to the following rubric
+// 1 - Element
+// 2 - Attribute (deprecated)
+// 3 - Text node (line break)
+// 8 - Comment
+// 9 - Document itself
+// 10 - Doctype
+
+// Get Children element nodes
+val = ul.children; // html collection--more useful
+val = ul.children[2];
+// ul.children[2].textContent = 'hello';
+
+// children of children
+val = ul.children[2].children;
+val = ul.children[2].children[0].className;
+ul.children[2].children[0].id = 'testing';
+val = ul.children[2].children;
+
+// first and last child
+val = ul.firstChild; // first #text from node list
+val = ul.lastChild; // last #text from node list
+
+val = ul.firstElementChild; // first li from collection
+val = ul.lastElementChild; // last li from collection
+
+// count child elements
+val = ul.childElementCount; // 5
+
+// Get parent node
+val = li.parentNode; // whole ul
+val = li.parentElement; // whole ul
+val = li.parentElement.parentElement; // entire body
+
+// Get next sibling and previous sibling
+val = li.nextSibling; // #text: following line break
+val = li.nextElementSibling; // second li
+val = li.nextElementSibling.nextElementSibling; // third li
+val = li.nextElementSibling.nextElementSibling.previousElementSibling; // back to second li
+
+val = li.previousSibling; // #text: opening line break
+
+console.log(val);

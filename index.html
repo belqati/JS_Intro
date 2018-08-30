@@ -165,6 +165,9 @@ liEven.forEach(function(li){
 });</code></pre> returns node list, use array method without conversion: all even list items</li>
           </ul>
 
+      <h3>Traversing the DOM</h3>
+        <p>The previous section also illustrates the process of traversing the DOM. More specific methods involve <code class="language-javascript">document.querySelector</code> with <code class="language-javascript">children</code>, <code class="language-javascript">parents</code>, and <code class="language-javascript">siblings</code>. When a node list is returned (e.g., via <code class="language-javascript">childNodes</code>), <em>all</em> elements are included, such as the <code class="language-javascript">text</code> element (signifying a line break). Most often collections will be more useful for DOM traversal.</p>
+
 </body>
 
 <footer>
