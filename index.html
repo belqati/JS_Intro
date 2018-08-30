@@ -130,6 +130,41 @@ console.log(greetings()); // 'Greetings John Doe!'</code></pre>
     <h2>DOM Manipulation and Events</h2>
       <p>The document object model (DOM) is essentially a structured representation of an HTML document, and can be thought of as a tree of elements or nodes created by the browser (e.g., all tags such as <code class="language-javascript">&lt;html></code>, <code class="language-javascript">&lt;body></code>, <code class="language-javascript">&lt;h1></code>, etc.). All of these are located within the <code class="language-javascript">window.document</code> object. The DOM is easily manipulated with vanilla JS, as it each node is an object with its own set of properties and methods. As such, using the JQuery library to manipulate the DOM "is kind of like using a sledgehammer to kill a mosquito." Today's vanilla JS just as capable, and is faster.</p>
 
+      <h3 id="testID" class="testClass">DOM Selectors</h3>
+        <p>There are two types of document object selectors. Single selectors grab a single item, even if there are more than one. Multiple selector methods returns an html collection or node list. A collection is array-like and can be converted to an array, while a node list includes more information and can be treated as an array without conversion. The styling and some html content for this section illustrates. The power of these selectors is demonstrated by our ability to make a user's experience with an app dynamic, as well as incorporating data from APIs and Ajax requests.</p>
+
+        <h4></h4>
+          <p>The selector <code class="language-javascript">document.querySelector()</code> replaces the older <code class="language-javascript">document.getElementById()</code>, the latter is limited to selecting specific ids. The <code class="language-javascript">querySelector()</code> method uses CSS3 syntax to target specific html elements, whether tags or otherwise, but will only select one at a time. The following list illustrates a bit.</p>
+
+          <ul id="qSelId">
+            <li><code class="language-javascript">document.querySelector('h4').style.background = '#7D71B3'</code> selects the first <code class="language-javascript">&lt;h4></code> in the document: the title of this subsection</li>
+            <li><code class="language-javascript">document.querySelector('h4').innerHTML = '&lt;span style="background:#FFC096; padding:3px; border-radius:5px;">&lt;code class="language-javascript">document.querySelector()&lt;/code>&lt;/span>'</code> provides the html content and styling for our title</li>
+            <li><code class="language-javascript">document.querySelector('#qSelId li:nth-child(2)').style.background = '#FFE7D8'</code> selects the ID of our title and then the specified child: this list item</li>
+          </ul>
+
+        <h4><code class="language-javascript">document.querySelectorAll()</code></h4>
+          <p>The selectors <code class="language-javascript">document.getElementsByClassName()</code> and <code class="language-javascript">document.getElementsByTagName()</code> will grab all specified classes and html tags, respectively. The <code class="language-javascript">document.querySelectorAll()</code> method is similar, but is both more flexible and returns a node list, which can be treated as an array without conversion. All three can use CSS3 syntax to target more specific html elements. The following list illustrates a bit.</p>
+
+          <ul>
+            <li><pre class="line-numbers"><code class="language-javascript">let codeLang = document.getElementsByClassName('language-javascript');
+codeLang[99].style.color = 'blue';</code></pre> selects the 99th item in the collection: our subtitle.</li>
+            <li><pre class="line-numbers"><code class="language-javascript">let lis = document.getElementsByTagName('li');
+
+lis = Array.from(lis); // convert to array for loop method
+
+lis.forEach(function(li){
+  li.style.color = 'white';
+});</code></pre> convert collection to array, then use array method to loop: all list text</li>
+            <li><pre class="line-numbers"><code class="language-javascript">let liEven = document.querySelectorAll('li:nth-child(even)');
+
+liEven.forEach(function(li){
+  li.style.background = '#9690AF';
+  li.style.padding = '5px';
+  li.style.borderRadius = '5px';
+  li.style.margin = '3px 0 3px 0';
+});</code></pre> returns node list, use array method without conversion: all even list items</li>
+          </ul>
+
 </body>
 
 <footer>

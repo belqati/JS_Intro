@@ -488,3 +488,99 @@ let linksArr = Array.from(links); // convert collection to array
 
 console.log(linksArr);
 console.clear();
+
+// single selectors
+// document.getElementById()
+const testID = document.getElementById('testID');
+
+// get element
+console.log(testID) // entire element
+
+// get things from the selected element
+console.log(testID.id) // id name
+console.log(testID.className) // class name
+
+// change styling
+testID.style.background = '#7D71B3';
+testID.style.color = '#100055';
+testID.style.padding = '5px';
+testID.style.borderRadius = '5px';
+// testID.style.display = 'none'; // hides element
+
+// change content
+testID.textContent = 'Selecting DOM Elements';
+testID.innerText = 'Varieties of DOM Selectors';
+// change content and style: for inserting Ajax requests etc.
+testID.innerHTML = '<span style="background:#FFE7D8; padding:3px; border-radius:5px;">Selecting the DOM</span>';
+
+console.clear();
+
+// document.querySelector() more powerful, not limited to id, only grabs one if more than one element
+console.log(document.querySelector('#testID'));
+console.log(document.querySelector('.testClass'));
+console.log(document.querySelector('.line-numbers'))
+
+
+document.querySelector('h4').style.background = '#7D71B3';
+document.querySelector('h4').style.padding = '5px';
+document.querySelector('h4').style.borderRadius = '5px';
+document.querySelector('h4').innerHTML = '<span style="background:#FFC096; padding:3px; border-radius:5px;"><code class="language-javascript">document.querySelector()</code></span>';
+document.querySelector('#qSelId li:nth-child(3)').style.background = '#7D71B3';
+document.querySelector('#qSelId li:nth-child(3)').style.borderRadius = '5px';
+
+console.clear();
+
+// multiple selectors: returns html collection or node list
+// document.getElementsByClassName()
+let codeLang = document.getElementsByClassName('language-javascript');
+
+// console.log(codeLang); // html collection
+console.log(codeLang.length); // length of said collection
+console.log(codeLang[98]); // specific item in collection
+codeLang[99].style.color = 'blue'; // style collection item
+
+// convert html collection to array
+codeLang = Array.from(codeLang);
+codeLang.reverse(); // array only method, will not work with collection
+codeLang.forEach(function(item){
+  console.log(item.className);
+});
+console.log(codeLang);
+
+console.clear();
+
+// document.getElementsByTagName()
+let lis = document.getElementsByTagName('li');
+
+lis = Array.from(lis); // convert to array
+// loop through each element
+lis.forEach(function(li){
+  li.style.color = 'white';
+})
+console.log(lis);
+
+// document.querySelectorAll()
+lis = document.querySelectorAll('li code.language-javascript');
+// no conversion to array necessary
+lis.forEach(function(li){
+  li.style.color = 'purple';
+});
+
+let liEven = document.querySelectorAll('li:nth-child(even)');
+liEven.forEach(function(li){
+  li.style.background = '#9690AF';
+  li.style.padding = '5px';
+  li.style.borderRadius = '5px';
+  li.style.margin = '3px 0 3px 0';
+});
+
+let liOdd = document.querySelectorAll('li:nth-child(odd)');
+liOdd.forEach(function(li){
+  li.style.background = '#7D71B3';
+  li.style.padding = '5px';
+  li.style.borderRadius = '5px';
+  li.style.margin = '3px 0 3px 0';
+});
+
+
+console.log(lis)
