@@ -863,3 +863,56 @@ function deleteItem(e){
   }
 }
 
+// LOCAL AND SESSION STORAGE
+// add item
+// sessionStorage.setItem('name', 'Beth');
+// localStorage.setItem('name', 'Jane');
+// localStorage.setItem('age', '39');
+localStorage.setItem('ethnicity', 'Native American');
+
+// get item
+let locName = localStorage.getItem('name');
+let locAge = localStorage.getItem('age');
+let locEthnicity = localStorage.getItem('ethnicity');
+
+// remove item
+localStorage.removeItem('ethnicity');
+
+// clear all
+// localStorage.clear();
+
+// console.log(locName, locAge, localStorage.getItem('ethnicity'));
+
+// TASK LIST ILLUSTRATION
+// listen at task list form
+document.querySelector('#taskForm').addEventListener('submit', addTask);
+
+function addTask(e){
+  // variable to grab input data
+  const taskNew = document.getElementById('taskNew').value;
+  // declare variable for array of input data
+  let tasks;
+  // if empty, create array, else get/parse array
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+  // add new input data to gotten array
+  tasks.push(taskNew);
+  // set updated array to local storage
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  // console.log(taskNew)
+  // override form submit default behavior
+  e.preventDefault();
+}
+// get/parse array from local storage
+let taskList = JSON.parse(localStorage.getItem('tasks'));
+// loop through array if it exists (otherwise error)
+if(taskList !== null){
+  taskList.forEach(function(task){
+    console.log(task);
+  });
+  // clear local storage as clean-up
+  localStorage.clear();
+}

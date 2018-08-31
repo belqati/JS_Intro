@@ -247,6 +247,26 @@ function deleteItem(e){
     e.target.remove();
   }
 }</code></pre>
+
+    <h2>Local and Session Storage</h2>
+      <p>Session storage keeps user information in memory for the duration that an app and/or browser is open. Local storage has a built in set of methods for data persistence, located at <code class="language-javascript">window.localStorage</code>. Data stored in local storage must be manually removed by the user through the app UI or browser settings. Both session and local storage use the same methods, and their data is viewable in the Chrome dev tools under Application, Storage. All items set to local storage must be a string, and it will return a string. Arrays and objects can be stored, etc., via the methods <code class="language-javascript">JSON.stringify()</code> for input, and <code class="language-javascript">JSON.parse()</code> for output. The following list generator illustrates via the console (see its encoding with comments at the conclusion of <code class="language-javascript">app.js</code>).</p>
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Task List</h5>
+            <form class="form-inline" id="taskForm">
+              <div class="form-group">
+                <label for="taskNew"></label>
+                <input type="text" class="form-control" id="taskNew" placeholder="New Task">
+              </div>
+              <div class="form-group mx-sm-2">
+                <input type="submit" class="btn btn-info" id="taskAdd" value="Add Task">
+              </div>
+            </form>
+            <small>Check the console, silly!</small>
+        </div>
+      </div>
+
 </body>
 
 <footer>
