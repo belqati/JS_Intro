@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:400" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.14.0/themes/prism.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.14.0/plugins/line-numbers/prism-line-numbers.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css">
   <link rel="stylesheet" href="main.css">
 </head>
 
@@ -165,8 +166,15 @@ liEven.forEach(function(li){
 });</code></pre> returns node list, use array method without conversion: all even list items</li>
           </ul>
 
-      <h3>Traversing the DOM</h3>
+      <h3>Traversing the DOM and Manipulating Elements</h3>
         <p>The previous section also illustrates the process of traversing the DOM. More specific methods involve <code class="language-javascript">document.querySelector</code> with <code class="language-javascript">children</code>, <code class="language-javascript">parents</code>, and <code class="language-javascript">siblings</code>. When a node list is returned (e.g., via <code class="language-javascript">childNodes</code>), <em>all</em> elements are included, such as the <code class="language-javascript">text</code> element (signifying a line break). Most often collections will be more useful for DOM traversal.</p>
+
+        <p>JS can also be used to create elements, replace them, or remove them altogether. These are illustrated in the following list and the accompanying JS file.</p>
+
+        <ul id="createEl">
+          <li>The first item in an illustrative list</li>
+          <li>The second item in an illustrative list</li>
+        </ul>
 
 </body>
 

@@ -554,6 +554,7 @@ let lis = document.getElementsByTagName('li');
 
 lis = Array.from(lis); // convert to array
 // loop through each element
+// FYI: looping through the DOM and changing styles etc. can cause significant performance hits (e.g., forced reflow, otherwise known as layout thrashing)
 lis.forEach(function(li){
   li.style.color = 'white';
 })
@@ -638,4 +639,66 @@ val = li.nextElementSibling.nextElementSibling.previousElementSibling; // back t
 
 val = li.previousSibling; // #text: opening line break
 
+// ELEMENT CREATION AND ADDING IT TO THE DOM
+// create element
+let newLi = document.createElement('li');
+// add class
+newLi.className = 'newClass';
+// add id
+newLi.id = 'someNewID';
+// add attribute
+newLi.setAttribute('title', 'New List Item');
+// create text node and append
+newLi.appendChild(document.createTextNode('New item via JS: note the lack of JS added styling'));
+// create link element, and attribute and icon
+let link = document.createElement('a');
+link.setAttribute('href', '#');
+link.innerHTML = '<i class= "fas fa-times float-right"></i>';
+// append link to newli
+newLi.appendChild(link);
+// append newli to specified ul
+document.querySelector('ul#createEl').appendChild(newLi);
+
+
+// REPLACE ELEMENT
+// create element
+let newLi2 = document.createElement('li');
+// append new text node
+newLi2.appendChild(document.createTextNode('Another new item via JS: note lack of JS added styling'));
+// get li to replace
+let oldLi = document.getElementById('createEl').firstElementChild;
+// get parent
+let oldLiParent = document.getElementById('createEl');
+// replace
+oldLiParent.replaceChild(newLi2, oldLi);
+
+// REMOVE ELEMENT
+// remove list item
+lis = document.querySelectorAll('li'); // to locate one to remove
+// lis[18].remove(); // does not remove it from original html file, just from the DOM; not the same as display-hide styling
+
+// remove child element
+ul = document.querySelector('ul');
+// ul.removeChild(lis[0]); // ditto
+
+// ADD/REMOVE CLASSES AND ATTRIBUTES
+// classes
+newLi2.className = 'newClass anotherNewClass';
+val = newLi2;
+val = newLi2.classList; // DOM token list
+val = newLi2.classList[1]; // anotherNewClass
+newLi2.classList.add('yetAnother'); // add 'yetAnother' to classes
+newLi2.classList.remove('newClass'); // remove 'newClass' from classes
+
+// attributes
+let newLink = newLi2.appendChild(document.createElement('a'));
+newLink.appendChild(document.createTextNode(': search Google'));
+newLink.setAttribute('href', 'https://www.google.com/');
+newLink.setAttribute('target', 'blank');
+newLink.setAttribute('title', 'anotherTitle');
+val = newLink.hasAttribute('title');
+newLink.removeAttribute('title');
+val = newLink.hasAttribute('title');
+
+console.log(newLink);
 console.log(val);
