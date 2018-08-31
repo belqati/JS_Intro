@@ -832,3 +832,34 @@ function runEvent2(e){
   // console.log(keyboardEvent.value);
   // e.preventDefault();
 };
+
+// EVENT BUBBLING AND DELEGATION
+// Bubbling illustration: clicking only on the select dropdown fires its click event, then its form, then its forms container div
+eventContainer.addEventListener('click', function(){console.log('eventContainer');});
+formEvent.addEventListener('click', function(){console.log('formEvent');});
+selectEvent.addEventListener('click', function(){console.log('selectEvent');});
+
+// Delegation illustration
+// add event listener to some parent element, use logic to identify child for event handler
+document.body.addEventListener('click', deleteItem);
+
+function deleteItem(e){
+  // will not work for elements added after DOM loads (e.g., via JS)
+  // will not work if more than one class present
+  // if(e.target.className === 'deleteMe'){
+  //   console.log('deleteMe!');
+  // }
+
+  // will not work for elements added after DOM loads (e.g., via JS)
+  // works with multiple classes
+  // if(e.target.classList.contains('deleteMe')){
+  //   console.log('deleteMe!');
+  // }
+
+  // will work for elements added after DOM loads
+  if(e.target.parentElement.classList.contains('deleteMe')){
+    // console.log('deleted!');
+    e.target.remove();
+  }
+}
+

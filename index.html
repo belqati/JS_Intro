@@ -178,7 +178,7 @@ liEven.forEach(function(li){
 
     <div class="container-fluid" id="eventContainer">
       <h3>Event Listeners and the Event Object</h3>
-        <p>We can use the <code class="language-javascript">document.querySelector()</code> to access a specific DOM element, and then add an event listener with <code class="language-javascript">.addEventListener()</code> to make the UI interactive. The following buttons illustrate, followed by a sample of their encoding. </p>
+        <p>We can use the <code class="language-javascript">document.querySelector()</code> to access a specific DOM element, and then add an event listener with <code class="language-javascript">.addEventListener()</code> to make the UI interactive. The following buttons and form illustrate, followed by a sample of their encoding.</p>
 
           <h5 id="eventTitle">Events Illustrated</h5>
           <button class="btn btn-outline-info" id="event1">event1 button</button>
@@ -228,6 +228,25 @@ function onMouseover(e){
 }</code></pre>
     </div>
 
+      <h3>Event Bubbling and Event Delegation</h3>
+        <p>Bubbling represents the firing of an event type on an element, and the subsequent firing of the same type on its parent, and upwards through its remaining ancestors, presuming they have the same event type, all the up to the <code class="language-javascript">document</code> (<a href="https://javascript.info/bubbling-and-capturing" target="blank">modified from this full explanation</a>). The previous section illustrates via the console, where clicking only on the select dropdown fires its click event, then its form, then its form's container div.</p>
+
+        <p>Event delegation represents an event placed on a parent, where logic then dictates which of its child element(s) is influenced. Delegation ensures that event handlers will function for items added to the DOM after it has loaded (i.e., via JS). The following list illustrates, followed by its encoding. The listener is added to the <code class="language-javascript">document</code>, and the logic looks for the target's parent via its id.</p>
+
+        <ul class="deleteMe anotherClass yetAnother">
+          <li class="deleteMe anotherClass">Delete me by clicking!</li>
+          <li class="deleteMe">Delete me by clicking!</li>
+          <li class="deleteMe">Delete me by clicking!</li>
+        </ul>
+<pre class="line-numbers"><code class="language-javascript">document.body.addEventListener('click', deleteItem);
+
+function deleteItem(e){
+  // will work for elements added after DOM loads
+  if(e.target.parentElement.classList.contains('deleteMe')){
+    console.log('deleted!');
+    e.target.remove();
+  }
+}</code></pre>
 </body>
 
 <footer>
