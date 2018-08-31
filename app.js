@@ -700,5 +700,135 @@ val = newLink.hasAttribute('title');
 newLink.removeAttribute('title');
 val = newLink.hasAttribute('title');
 
-console.log(newLink);
-console.log(val);
+// console.log(newLink);
+// console.log(val);
+
+// EVENT LISTENERS
+// takes two arguments, the event and a callback function
+// the callback function takes the event object as its argument, providing access to its properties and methods
+let event1 = document.querySelector('#event1');
+let event2 = document.querySelector('#event2');
+
+event1.addEventListener('click', onClick)
+event2.addEventListener('click', onClick)
+
+event1.addEventListener('mouseover', onMouseover)
+event2.addEventListener('mouseover', onMouseover)
+
+// e is short for event object
+function onClick(e){
+  // console.log('Hello World!');
+  // the following method overrides the default behavior of forms, links, etc.
+  e.preventDefault();
+
+  val = e; // most important element of event object is .target, which refers to the DOM element the event object is immediately connected to (e.g., a clicked button, etc.)
+  // e.target element
+  val = e.target;
+  val = e.target.id;
+  val = e.target.className;
+  val = e.target.classList;
+  e.target.innerText = 'Did Something!'
+
+  // event type
+  val = e.type;
+
+  // timestamp
+  val = e.timeStamp;
+  console.log(e.timeStamp);
+
+  // coords of event relative to window
+  val = e.clientY;
+  val = e.clientX;
+
+  // coords of event relative to selected element
+  val = e.offsetY;
+  val = e.offsetX;
+
+  // console.log(val);
+}
+
+function onMouseover(e){
+  e.target.textContent = 'Click Me!';
+}
+
+// MOUSE EVENTS
+const eventContainer = document.querySelector('#eventContainer');
+const eventTitle = document.querySelector('#eventTitle');
+const event3 = document.querySelector('#event3');
+
+// click
+event3.addEventListener('click', runEvent);
+// double-click
+event3.addEventListener('dblclick', runEvent);
+// mousedown: e.g., holding down a button with mouse
+event3.addEventListener('mousedown', runEvent);
+// mouseup: opposite behavior
+event3.addEventListener('mouseup', runEvent);
+// mouseenter: refers to whole element
+eventContainer.addEventListener('mouseenter', runEvent);
+// mouseleave: refers to whole element
+eventContainer.addEventListener('mouseleave', runEvent);
+// mouseover: fired by children of element (e.g., whatever is inside the container, such as a title and buttons)
+eventContainer.addEventListener('mouseover', runEvent);
+// mouseout: fired by children of element
+eventContainer.addEventListener('mouseout', runEvent);
+// mousemove: any movement at all--great for games or other apps with lots of interaction
+eventContainer.addEventListener('mousemove', trackMouseMove);
+
+function trackMouseMove(e){
+  eventTitle.textContent = `MouseX: ${e.offsetX} and MouseY: ${e.offsetY}`;
+  eventContainer.style.background = `rgb(${e.offsetX}, ${e.offsetY}, 100)`
+}
+
+// Event Handlers
+function runEvent(e){
+  // console.log(`EVENT TYPE: ${e.type}`);
+  e.preventDefault();
+};
+
+document.querySelector('form').style.margin = '10px 0 10px 0';
+
+// KEYBOARD AND INPUT EVENTS
+const formEvent = document.querySelector('.formEvent');
+const keyboardEvent = document.getElementById('keyboardEvent');
+const selectEvent = document.querySelector('#selectEvent');
+
+// clear input value
+keyboardEvent.value = '';
+
+// form event on submit
+// formEvent.addEventListener('submit', runEvent2);
+
+// // input event: keydown
+// keyboardEvent.addEventListener('keydown', runEvent2);
+// // keyup
+// keyboardEvent.addEventListener('keyup', runEvent2);
+// keypress: generic keypress event
+// keyboardEvent.addEventListener('keypress', runEvent2);
+
+// Focus
+keyboardEvent.addEventListener('focus', runEvent2);
+// Blur: loss of focus
+keyboardEvent.addEventListener('blur', runEvent2);
+// cut copy paste
+keyboardEvent.addEventListener('cut', runEvent2);
+keyboardEvent.addEventListener('copy', runEvent2);
+keyboardEvent.addEventListener('paste', runEvent2);
+
+// change event
+selectEvent.addEventListener('change', runEvent2);
+
+// Event Handler
+function runEvent2(e){
+  console.log(`EVENT TYPE: ${e.type}`);
+
+  // get input value from input keystrokes
+  console.log(e.target.value);
+
+  // assign input value to heading
+  // eventTitle.innerText = e.target.value;
+
+  // get input value from form submit
+  // console.log(keyboardEvent.value);
+  // e.preventDefault();
+};

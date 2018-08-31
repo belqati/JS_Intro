@@ -167,7 +167,7 @@ liEven.forEach(function(li){
           </ul>
 
       <h3>Traversing the DOM and Manipulating Elements</h3>
-        <p>The previous section also illustrates the process of traversing the DOM. More specific methods involve <code class="language-javascript">document.querySelector</code> with <code class="language-javascript">children</code>, <code class="language-javascript">parents</code>, and <code class="language-javascript">siblings</code>. When a node list is returned (e.g., via <code class="language-javascript">childNodes</code>), <em>all</em> elements are included, such as the <code class="language-javascript">text</code> element (signifying a line break). Most often collections will be more useful for DOM traversal.</p>
+        <p>The previous section also illustrates the process of traversing the DOM. More specific methods involve <code class="language-javascript">document.querySelector()</code> with <code class="language-javascript">children</code>, <code class="language-javascript">parents</code>, and <code class="language-javascript">siblings</code>. When a node list is returned (e.g., via <code class="language-javascript">document.querySelectorAll()</code> or <code class="language-javascript">childNodes</code>), <em>all</em> elements are included, such as the <code class="language-javascript">text</code> element (signifying a line break). Most often collections will be more useful for DOM traversal.</p>
 
         <p>JS can also be used to create elements, replace them, or remove them altogether. These are illustrated in the following list and the accompanying JS file.</p>
 
@@ -175,6 +175,58 @@ liEven.forEach(function(li){
           <li>The first item in an illustrative list</li>
           <li>The second item in an illustrative list</li>
         </ul>
+
+    <div class="container-fluid" id="eventContainer">
+      <h3>Event Listeners and the Event Object</h3>
+        <p>We can use the <code class="language-javascript">document.querySelector()</code> to access a specific DOM element, and then add an event listener with <code class="language-javascript">.addEventListener()</code> to make the UI interactive. The following buttons illustrate, followed by a sample of their encoding. </p>
+
+          <h5 id="eventTitle">Events Illustrated</h5>
+          <button class="btn btn-outline-info" id="event1">event1 button</button>
+          <a class="btn btn-outline-warning" id="event2" href="https://google.com" target="blank">event2 link</a>
+          <button class="btn btn-outline-light" id="event3">mouseEvent</button>
+
+          <form class="form-inline formEvent" action="index.php">
+            <div class="form-group">
+              <label for="keyboardEvent"></label>
+              <input type="text" class="form-control" id="keyboardEvent" placeholder="keyboardEvent">
+            </div>
+            <div class="form-group mx-sm-2">
+              <input type="submit" class="btn btn-outline-success" id="submitEvent" value="submitEvent">
+            </div>
+            <div class="form-group mx-sm-2">
+            <select name="selectList" id="selectEvent" class="custom-select">
+              <option selected>selectSomething</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+            </div>
+          </form>
+
+<pre class="line-numbers"><code class="language-javascript">let event1 = document.querySelector('#event1');
+let event2 = document.querySelector('#event2');
+
+event1.addEventListener('click', onClick)
+event2.addEventListener('click', onClick)
+
+event1.addEventListener('mouseover', onMouseover)
+event2.addEventListener('mouseover', onMouseover)
+
+// e is short for event object
+function onClick(e){
+  // override the default behavior of forms, links, etc.
+  // e.g., link button should load google.com on click, but overridden
+  e.preventDefault();
+
+  // e.target element: most important element of the event object
+  e.target.innerText = 'Did Something!'
+  console.log(e.timeStamp);
+}
+
+function onMouseover(e){
+  e.target.textContent = 'Click Me!';
+}</code></pre>
+    </div>
 
 </body>
 
