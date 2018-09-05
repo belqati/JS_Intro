@@ -69,7 +69,7 @@ console.log('Global Scope:', a, b, c); // 'Global Scope: 5 2 3'</code></pre>
         <p>Implicit coercion happens under a number of circumstances. An undesireable example inadvertantly mixes datatypes and returns an incorrect result: e.g., <code class="language-javascript">'6' + 5</code> returns <code class="language-javascript">'65'</code> rather than <code class="language-javascript">11</code> or <code class="language-javascript">'11'</code>, where JS inherently converts the number to a string and then concatenates the output. Implicit coercion is helpful in a number of circumstances, such as <code class="language-javascript">==</code> or <code class="language-javascript">!=</code> for loose equality versus the strict <code class="language-javascript">===</code>, or <code class="language-javascript">if('someValueExists') {doSomething}</code>.</p>
 
     <h2>Template Literals</h2>
-      <p>Template literals were introduced in ES6, and provide a smoother way of creating template variables in JS and displaying them in HTML. Its basic syntax is simple: <code class="language-javascript">`&lt;html>${someVar}&lt;/html>`</code>, where the doubled diacritical grave accent brackets the HTML and variables accross multiple lines. The following code-block illustrates. Note that as it is written, it will overwrite any existing <code class="language-javascript">.html</code> file associated with the <code class="language-javascript">.js</code> file.</p>
+      <p>Template literals were introduced in ES6, and provide a smoother way of creating template variables in JS and displaying them in HTML. Its basic syntax is simple: <code class="language-javascript">`&lt;html>${someVar}&lt;/html>`</code>, where the doubled diacritical grave accent brackets the HTML and variables across multiple lines. The following code-block illustrates. Note that as it is written, it will overwrite any existing <code class="language-javascript">.html</code> file associated with the <code class="language-javascript">.js</code> file.</p>
         
 <pre class="line-numbers"><code class="language-javascript">const firstName = 'Janeel';
 const lastName = 'Doe';
@@ -167,9 +167,9 @@ liEven.forEach(function(li){
           </ul>
 
       <h3>Traversing the DOM and Manipulating Elements</h3>
-        <p>The previous section also illustrates the process of traversing the DOM. More specific methods involve <code class="language-javascript">document.querySelector()</code> with <code class="language-javascript">children</code>, <code class="language-javascript">parents</code>, and <code class="language-javascript">siblings</code>. When a node list is returned (e.g., via <code class="language-javascript">document.querySelectorAll()</code> or <code class="language-javascript">childNodes</code>), <em>all</em> elements are included, such as the <code class="language-javascript">text</code> element (signifying a line break). Most often collections will be more useful for DOM traversal.</p>
+        <p>The previous section also illustrates the process of traversing the DOM. More specific methods involve <code class="language-javascript">document.querySelector()</code> with <code>children</code>, <code>parents</code>, and <code>siblings</code>. When a node list is returned (e.g., via <code class="language-javascript">document.querySelectorAll()</code> or <code class="language-javascript">childNodes</code>), <em>all</em> elements are included, such as the <code class="language-javascript">text</code> element (signifying a line break). Most often collections will be more useful for DOM traversal.</p>
 
-        <p>JS can also be used to create elements, replace them, or remove them altogether. These are illustrated in the following list and the accompanying JS file.</p>
+        <p>JS can also be used to create elements, replace them, or remove them altogether. These are illustrated in the following list and the accompanying <code>app.js</code>.</p>
 
         <ul id="createEl">
           <li>The first item in an illustrative list</li>
@@ -249,7 +249,7 @@ function deleteItem(e){
 }</code></pre>
 
     <h2>Local and Session Storage</h2>
-      <p>Session storage keeps user information in memory for the duration that an app and/or browser is open. Local storage has a built in set of methods for data persistence, located at <code class="language-javascript">window.localStorage</code>. Data stored in local storage must be manually removed by the user through the app UI or browser settings. Both session and local storage use the same methods, and their data is viewable in the Chrome dev tools under Application, Storage. All items set to local storage must be a string, and it will return a string. Arrays and objects can be stored, etc., via the methods <code class="language-javascript">JSON.stringify()</code> for input, and <code class="language-javascript">JSON.parse()</code> for output. The following list generator illustrates via the console (see its encoding with comments at the conclusion of <code class="language-javascript">app.js</code>).</p>
+      <p>Session storage keeps user information in memory for the duration that an app and/or browser is open. Local storage has a built in set of methods for data persistence, located at <code class="language-javascript">window.localStorage</code>. Data stored in local storage must be manually removed by the user through the app UI or browser settings. Both session and local storage use the same methods, and their data is viewable in the Chrome dev tools under Application, Storage. All items set to local storage must be a string, and it will return a string. Arrays and objects can be stored, etc., via the methods <code class="language-javascript">JSON.stringify()</code> for input, and <code class="language-javascript">JSON.parse()</code> for output. The following list generator illustrates via the console (see its encoding with comments at the conclusion of <code class="language-javascript">app.js</code>). See my <code>listKeeperBasic</code> app for a fuller illustration employing <code class="language-javascript">.localStorage</code>.</p>
 
       <div class="card">
         <div class="card-body">
@@ -266,6 +266,9 @@ function deleteItem(e){
             <small>Check the console, silly!</small>
         </div>
       </div>
+
+    <h2>Object Oriented Programming (OOP)</h2>
+      <p>An <code>object literal</code> works for any situation that object is entirely unique (e.g., <code class="language-javascript">const uniqueObj = {unique1: String, unique2: etc.}</code>). Wherever objects with similar properties are desired, however, in ES5 it is best to use <code>constructor functions</code> with the <code class="language-javascript">new</code> keyword (see the <code class="language-javascript">new Person(name, dob)</code> example in the accompanying <code>app.js</code>). ES6 introduces the <code class="language-javascript">class</code>, which is essentially a wrapper for constructors, and which is meant to reflect the functionality of classes in other languages like Java, C++, and so forth.</p>
 
 </body>
 

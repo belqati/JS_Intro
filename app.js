@@ -916,3 +916,26 @@ if(taskList !== null){
   // clear local storage as clean-up
   localStorage.clear();
 }
+
+// Person Constructor: more complex than examples in the JS notes from Colt/Elie
+function Person(name, dob){
+  this.name = name;
+  // date-of-birth takes flexible string format
+  this.birthday = new Date(dob);
+  // common method for calculating age based on dob
+  this.calculateAge = function(){
+    // Date.now() and Date.getTime() return milliseconds since Jan 1, 1970 (epoch time)
+    // the difference = age of person in milliseconds
+    const diff = Date.now() - this.birthday.getTime();
+    // returns diff converted to date relative to epoch time
+    const ageDate = new Date(diff);
+    // UTC = Universal Time Constructor
+    // convert ageDate to year, subtract epoch time year, make sure result is not negative
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+}
+
+const jan = new Person('Jan', '3-9-74');
+// run calculateAge() method for new Person()
+// console.log(jan.calculateAge());
+
