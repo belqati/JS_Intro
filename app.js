@@ -918,24 +918,58 @@ if(taskList !== null){
 }
 
 // Person Constructor: more complex than examples in the JS notes from Colt/Elie
-function Person(name, dob){
-  this.name = name;
+function Person(first, last, dob){
+  this.first = first;
+  this.last = last;
   // date-of-birth takes flexible string format
   this.birthday = new Date(dob);
   // common method for calculating age based on dob
-  this.calculateAge = function(){
-    // Date.now() and Date.getTime() return milliseconds since Jan 1, 1970 (epoch time)
-    // the difference = age of person in milliseconds
-    const diff = Date.now() - this.birthday.getTime();
-    // returns diff converted to date relative to epoch time
-    const ageDate = new Date(diff);
-    // UTC = Universal Time Constructor
-    // convert ageDate to year, subtract epoch time year, make sure result is not negative
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
-  }
+  // this.calculateAge = function(){
+  //   // Date.now() and Date.getTime() return milliseconds since Jan 1, 1970 (epoch time)
+  //   // the difference = age of person in milliseconds
+  //   const diff = Date.now() - this.birthday.getTime();
+  //   // returns diff converted to date relative to epoch time
+  //   const ageDate = new Date(diff);
+  //   // UTC = Universal Time Constructor
+  //   // convert ageDate to year, subtract epoch time year, make sure result is not negative
+  //   return Math.abs(ageDate.getUTCFullYear() - 1970);
+  // }
 }
 
-const jan = new Person('Jan', '3-9-74');
-// run calculateAge() method for new Person()
-// console.log(jan.calculateAge());
+// calculateAge moved to Person constructor prototype, links to every new Person() dunder __proto__
+Person.prototype.calculateAge = function(){
+    // Date.now() and Date.getTime() return milliseconds since Jan 1, 1970 (epoch time)
+  // the difference = age of person in milliseconds
+  const diff = Date.now() - this.birthday.getTime();
+  // returns diff converted to date relative to epoch time
+  const ageDate = new Date(diff);
+  // UTC = Universal Time Constructor
+  // convert ageDate to year, subtract epoch time year, make sure result is not negative
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
 
+// add getFullName to constructor prototype-->dunder __proto__
+Person.prototype.getFullName = function(){
+  return `${this.first} ${this.last}`;
+}
+
+// add newLastName to prototype to illustrate data manipulation
+Person.prototype.newLastName = function(newLastName){
+  this.last = newLastName;
+}
+
+const jan = new Person('Jan', 'Joosten', '3-9-74');
+const mary = new Person('Mary', 'Koko', 'Jan 20 1963')
+console.log(mary);
+// run calculateAge() method for new Person()
+console.log(mary.calculateAge());
+console.log(mary.getFullName());
+
+mary.newLastName('Jones');
+console.log(mary.getFullName());
+
+// hasOwnProperty() method returns boolean
+console.log(mary.hasOwnProperty('first')); // true
+console.log(mary.hasOwnProperty('getFullName')); // false
+
+console.clear();
