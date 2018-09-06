@@ -948,9 +948,13 @@ Person.prototype.calculateAge = function(){
   return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
 
-// add getFullName to constructor prototype-->dunder __proto__
+// add getFullName and greetings to constructor prototype-->dunder __proto__
 Person.prototype.getFullName = function(){
   return `${this.first} ${this.last}`;
+}
+
+Person.prototype.greetings = function(){
+  return `Greetings ${this.first} ${this.last}!`;
 }
 
 // add newLastName to prototype to illustrate data manipulation
@@ -972,4 +976,30 @@ console.log(mary.getFullName());
 console.log(mary.hasOwnProperty('first')); // true
 console.log(mary.hasOwnProperty('getFullName')); // false
 
+// customer constructor
+function Customer(first, last, dob, phone, membership){
+  // inherit properties from the Person() constructor via call() (but not its prototype)
+  // Person.call(this, first, last, dob);--refactored using apply() and arguments keyword (array of args)
+  Person.apply(this, arguments);
+
+  this.phone = phone;
+  this.membership = membership;
+}
+
+// inherit Person.prototype to Customer constructor
+Customer.prototype = Object.create(Person.prototype);
+// now make Customer.prototype return Customer()
+// WHY?
+Customer.prototype.constructor = Customer;
+
+// create customer
+const customer01 = new Customer('Tom', 'Howey', 'july 4 2000', '813-456-1234', 'Standard');
+console.log(customer01);
+
+// example of overwriting an inherited method
+Customer.prototype.greetings = function(){
+  return `Howdy ${this.first} ${this.last}, welcome to the Company!`;
+}
+
+console.log(customer01.greetings());
 console.clear();
