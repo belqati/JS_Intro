@@ -1033,3 +1033,43 @@ const jules = Object.create(personProto, {
 console.log(jules);
 console.log(jules.greeting());
 console.clear();
+
+// ES6 classes = syntactic sugar, convenience syntax, does not change underlying JS
+class Human {
+  constructor(first, last, dob){
+    this.first = first;
+    this.last = last;
+    this.birthday = new Date(dob);
+  }
+  greeting(){
+    return `Howdy Ho ${this.first} ${this.last}!`;
+  }
+  calculateAge(){
+    const diff = Date.now() - this.birthday.getTime();
+    const ageDate = new Date(diff);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+  newLastName(newLastName){
+    this.last = newLastName;
+  }
+  // static method--unhelpful example
+  static addNum(x,y){
+    return x+y;
+  }
+}
+
+const jay = new Human('Jay', 'Glade', '11-13-1979');
+console.log(jay);
+console.log(jay.greeting());
+console.log(jay.calculateAge());
+
+jay.newLastName('Williams');
+console.log(jay);
+
+// static methods are used within classes, and "aren't called on instances of the class. Instead, they're called on the class itself. These are often utility functions, such as functions to create or clone objects." (MDN)
+console.log(Human.addNum(1,2));
+// proves that class returns a prototype constructor
+console.log(Human === Human.prototype.constructor);
+// proves that class also returns associated prototype methods
+console.log(Object.getOwnPropertyNames(Human.prototype));
+
