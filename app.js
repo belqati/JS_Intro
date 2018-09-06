@@ -1003,3 +1003,33 @@ Customer.prototype.greetings = function(){
 
 console.log(customer01.greetings());
 console.clear();
+
+// using Object.create() as an alternative to prototypes and inheritance
+const personProto = {
+  greeting: function(){
+    return `Howdy ${this.first} ${this.last}!`;
+  },
+  newLastName: function(newLastName){
+    this.last = newLastName;
+  }
+}
+
+const martha = Object.create(personProto);
+martha.first = 'Martha';
+martha.last = 'Stewart';
+martha.age = 45;
+martha.newLastName('Jala');
+
+console.log(martha);
+console.log(martha.greeting());
+
+// alternative syntax to martha example
+const jules = Object.create(personProto, {
+  first: {value: 'Jules'},
+  last: {value: 'Vern'},
+  age: {value: 100}
+});
+
+console.log(jules);
+console.log(jules.greeting());
+console.clear();
