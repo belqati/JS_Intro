@@ -1072,4 +1072,49 @@ console.log(Human.addNum(1,2));
 console.log(Human === Human.prototype.constructor);
 // proves that class also returns associated prototype methods
 console.log(Object.getOwnPropertyNames(Human.prototype));
+console.clear();
 
+// illustration of inheritance via sub-class Cat
+class Dog {
+  constructor(name, breed, temper){
+    this.name = name;
+    this.breed = breed;
+    this.temper = temper;
+  }
+  // method
+  type(){
+    return `${this.name} is a ${this.temper} ${this.breed}.`;
+  }
+}
+
+const spotty = new Dog('Spotty', 'Dalmatian', 'hyper');
+console.log(spotty);
+console.log(spotty.type());
+
+// Cat sub-class
+class Cat extends Dog {
+  constructor(name, breed, temper, color, favFood){
+    super(name, breed, temper);
+
+    this.color = color;
+    this.favFood = favFood;
+  }
+
+  hobby(){
+    return `${this.name}, the ${this.color} ${this.temper} ${this.breed}, loves eating ${this.favFood}.`;
+  }
+
+  static getPetCost(cost){
+    return `$${cost}`;
+  }
+}
+
+const whiskers = new Cat('Whiskers', 'Tabby', 'grumpy', 'orange', 'dogs');
+console.log(whiskers);
+// illustrate sub-class inherits methods from parent class
+console.log(whiskers.type());
+// illustrate method added to sub-class
+console.log(whiskers.hobby());
+// illustrate practical use of static method
+console.log(`Whiskers cost ${Cat.getPetCost(50)}, and is worth every cent!`)
+console.clear();
