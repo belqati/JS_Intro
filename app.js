@@ -1118,3 +1118,58 @@ console.log(whiskers.hobby());
 // illustrate practical use of static method
 console.log(`Whiskers cost ${Cat.getPetCost(50)}, and is worth every cent!`)
 console.clear();
+
+// XHR object illustration
+// listen for XHR button
+document.querySelector('#xhrBtn').addEventListener('click', loadDataTxt);
+
+// function to pass in text file asynchronously
+function loadDataTxt(){
+  // instantiate XHR object
+  const xhr = new XMLHttpRequest();
+
+  // get data.txt
+  // boolean turns on async
+  xhr.open('GET', 'public/data/data.txt', true);
+  // console.log('READYSTATE', xhr.readyState);
+
+  // Optional: onprogress method checks for a readyState of 3, which allows us to do something while something is being loaded (such as display a spinner/loader)
+  xhr.onprogress = function(){
+    // console.log('READYSTATE', xhr.readyState);
+  }
+
+  // onload method waits for successful access of data (i.e., a status of 200, and a readyState value of 4), and then fires our specified function to do something with that data
+    // readyState Values (onload simplifies the older onreadystatechange method)
+    // 0: request not initialized
+    // 1: server connection established
+    // 2: request received
+    // 3: processing request
+    // 4: request finished, response is ready
+  xhr.onload = function(){
+    // HTTP Statuses:
+    // 200: "OK"
+    // 403: "Forbidden"
+    // 404: "Not Found"
+    // console.log('READYSTATE', xhr.readyState);
+
+    // check XHR object status property to make sure status is OK
+    if(this.status === 200){
+      // responseText method for grabbing text in xhr object from the GET request
+      // console.log(this.responseText);
+      document.querySelector('#xhrOutput').innerHTML = `${this.responseText}`;
+
+      // setTimeout to demonstrate that the text file can be called again and again asynchronously
+      setTimeout(function(){
+        document.querySelector('#xhrOutput').firstChild.remove();
+      }, 2000);
+    }
+  }
+
+  // error handling if request fails
+  xhr.onerror = function(){
+    console.log('Oops, request has failed!')
+  }
+
+  // send data and associated function back to browser
+  xhr.send();
+}

@@ -1,0 +1,1 @@
+<ul><li><small>This <code>data.txt</code> has been asynchronously accessed using the XHR object. Cheers!</small></li></ul>

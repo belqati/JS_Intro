@@ -283,6 +283,20 @@ function deleteItem(e){
 
         <p>The notion of inheritance in the ES6 <code class="language-javascript">class</code> is referred to descriptively as a sub-class. A sub-class is created using the <code class="language-javascript">extends</code> and <code class="language-javascript">super()</code> methods, and represents a streamlined way of creating inheritance among constructor functions. For example, see the <code class="language-javascript">Dog()</code> and <code class="language-javascript">Cat()</code> classes in our <code>app.js</code>, where the latter is an extended sub-class of the former.</p>
 
+    <h2>Asynchronous Code</h2>
+      <p>Most web-based asynchronous JS is handled through existing technologies such as AJAX, Fetch, Node.js fs (filesystem), and so forth. What is then important is how we handle their responses, either through callback functions, promises, or async/await.</p>
+
+      <h3>AJAX</h3>
+        <p>"Asynchronous JS & XML" (AJAX) is a set of web technologies that allow us to send/receive data asynchronously, and can handle XML (older), JSON (current standard), and plain text data formatting. That is, it allows the client to interact with a page's server without reloading the page, making the page much faster and interactive. Note that AJAX has been superceded by Fetch.</p>
+
+        <p>The core element of AJAX is the XHR object (<code>XMLHttpRequest</code>), is part of all browsers, has the methods used for data transfer between the client and the server, and can be used by other protocols than HTTP. The Fetch API is a commonly used technology for handling this object, and is native to vanilla JS. External libraries are also used: e.g., Axios, Superagent, jQuery (Brad does not recommend it for this purpose), and Node HTTP. The button below illustrates asynchronous interaction with the XHR object (see the <code>app.js</code> for its associated JS).</p>
+
+        <div class="container">
+          <button class="btn btn-outline-info btn-block" id="xhrBtn">XHR Get Text</button>
+          <br>
+          <div id="xhrOutput"></div>
+        </div>
+
 </body>
 
 <footer>
