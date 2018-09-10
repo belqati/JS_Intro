@@ -1,0 +1,20 @@
+[
+  {
+    "id": 2,
+    "name": "Joe Schmoe",
+    "company": "Designs4U",
+    "phone": "123-456-78910"
+  },
+  {
+    "id": 3,
+    "name": "Rhoda Dendrin",
+    "company": "FlowersRus",
+    "phone": "555-444-2354"
+  },
+  {
+    "id": 4,
+    "name": "Janus Parallel",
+    "company": "Parallelomania",
+    "phone": "123-321-1230"
+  }
+]

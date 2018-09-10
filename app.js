@@ -1119,8 +1119,8 @@ console.log(whiskers.hobby());
 console.log(`Whiskers cost ${Cat.getPetCost(50)}, and is worth every cent!`)
 console.clear();
 
-// XHR object illustration
-// listen for XHR button
+// XHR OBJECT ILLUSTRATIONS
+// listen for XHR Get TXT button (.txt)
 document.querySelector('#xhrBtn').addEventListener('click', loadDataTxt);
 
 // function to pass in text file asynchronously
@@ -1171,5 +1171,118 @@ function loadDataTxt(){
   }
 
   // send data and associated function back to browser
+  xhr.send();
+}
+
+// listen for single customer button (.json)
+document.querySelector('#xhrCstmr').addEventListener('click', loadDataJsonCstmr);
+
+function loadDataJsonCstmr(){
+  // instantiate xhr
+  const xhr = new XMLHttpRequest();
+
+  // GET JSON data asynchronously
+  xhr.open('Get', 'public/data/customer.json', true);
+
+  // do something with JSON data stored in xhr object
+  xhr.onload = function(){
+    if(this.status === 200){
+      // console.log(this.responseText);
+
+      // parse JSON to access values
+      const customer = JSON.parse(this.responseText);
+
+      // output template
+      const output = `
+        <ul>
+          <li>CUSTOMER: ${customer.name}
+            <ul>
+              <li>ID: ${customer.id}</li>
+              <li>Company: ${customer.company}</li>
+              <li>Phone: ${customer.phone}</li>
+            </ul>
+          </li>
+        </ul>
+      `;
+
+      // send template to browser
+      document.querySelector('#xhrOutputCstmr').innerHTML = output;
+
+      // remove template to do it again!
+      setTimeout(function(){
+        const ul = document.querySelector('#xhrOutputCstmr');
+
+        while(ul.firstChild){
+          ul.firstChild.remove();
+        }
+      }, 2000);
+    }
+  }
+
+  // request error
+  xhr.onerror = function(){
+    console.log('Failed Request!');
+  }
+
+  // send all to browser
+  xhr.send();
+}
+
+// listen for array of customers button (.json)
+document.querySelector('#xhrCstmrs').addEventListener('click', loadDataJsonCstmrs);
+
+function loadDataJsonCstmrs(){
+  // instantiate xhr
+  const xhr = new XMLHttpRequest();
+
+  // GET JSON data asynchronously
+  xhr.open('Get', 'public/data/customers.json', true);
+
+  // do something with JSON data stored in xhr object
+  xhr.onload = function(){
+    if(this.status === 200){
+      // console.log(this.responseText);
+
+      // parse JSON to access values
+      const customers = JSON.parse(this.responseText);
+
+      let output = '';
+
+      // output template for each customer
+      customers.forEach(function(customer){
+        // append via += or will replace
+        output += `
+          <ul>
+            <li>CUSTOMER: ${customer.name}
+              <ul>
+                <li>ID: ${customer.id}</li>
+                <li>Company: ${customer.company}</li>
+                <li>Phone: ${customer.phone}</li>
+              </ul>
+            </li>
+          </ul>
+        `;
+      });
+
+      // send template to browser
+      document.querySelector('#xhrOutputCstmrs').innerHTML = output;
+
+      // remove template to do it again!
+      setTimeout(function(){
+        const ul = document.querySelector('#xhrOutputCstmrs');
+
+        while(ul.firstChild){
+          ul.firstChild.remove();
+        }
+      }, 2000);
+    }
+  }
+
+  // request error
+  xhr.onerror = function(){
+    console.log('Failed Request!');
+  }
+
+  // send all to browser
   xhr.send();
 }

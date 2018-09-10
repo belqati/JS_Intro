@@ -287,14 +287,18 @@ function deleteItem(e){
       <p>Most web-based asynchronous JS is handled through existing technologies such as AJAX, Fetch, Node.js fs (filesystem), and so forth. What is then important is how we handle their responses, either through callback functions, promises, or async/await.</p>
 
       <h3>AJAX</h3>
-        <p>"Asynchronous JS & XML" (AJAX) is a set of web technologies that allow us to send/receive data asynchronously, and can handle XML (older), JSON (current standard), and plain text data formatting. That is, it allows the client to interact with a page's server without reloading the page, making the page much faster and interactive. Note that AJAX has been superceded by Fetch.</p>
+        <p>"Asynchronous JS & XML" (AJAX) is a set of web technologies that allow us to send/receive data asynchronously, and can handle XML (older), JSON ("JS Object Notation"; current standard), and plain text data formatting. That is, it allows the client to interact with a page's server without reloading the page, making the page much faster and interactive. Note that AJAX has been superceded by Fetch.</p>
 
-        <p>The core element of AJAX is the XHR object (<code>XMLHttpRequest</code>), is part of all browsers, has the methods used for data transfer between the client and the server, and can be used by other protocols than HTTP. The Fetch API is a commonly used technology for handling this object, and is native to vanilla JS. External libraries are also used: e.g., Axios, Superagent, jQuery (Brad does not recommend it for this purpose), and Node HTTP. The button below illustrates asynchronous interaction with the XHR object (see the <code>app.js</code> for its associated JS).</p>
+        <p>The core element of AJAX is the XHR object (<code>XMLHttpRequest</code>), is part of all browsers, has the methods used for data transfer between the client and the server, and can be used by other protocols than HTTP. The Fetch API is a commonly used technology for handling this object, and is native to vanilla JS. External libraries are also used: e.g., Axios, Superagent, jQuery (Brad does not recommend it for this purpose), and Node HTTP. The buttons below illustrate asynchronous interaction with the XHR object in accessing <code>.txt</code> and <code>.json</code> data (see the <code>app.js</code> for its associated JS).</p>
 
         <div class="container">
-          <button class="btn btn-outline-info btn-block" id="xhrBtn">XHR Get Text</button>
+          <button class="btn btn-outline-info" id="xhrBtn">XHR Get TXT</button>
+          <button class="btn btn-outline-success" id="xhrCstmr">XHR Get Cstmr JSON</button>
+          <button class="btn btn-outline-primary" id="xhrCstmrs">XHR Get Cstmrs JSON</button>
           <br>
           <div id="xhrOutput"></div>
+          <div id="xhrOutputCstmr"></div>
+          <div id="xhrOutputCstmrs"></div>
         </div>
 
 </body>
