@@ -1286,3 +1286,56 @@ function loadDataJsonCstmrs(){
   // send all to browser
   xhr.send();
 }
+
+// CHUCK NORRIS JOKE GENERATOR
+// grab button for submit
+document.querySelector('.get-jokes').addEventListener('click', getJokes);
+
+function getJokes(e){
+  // grab number of jokes value
+  const num = document.querySelector('#number').value;
+  const cnjokes = document.querySelector('.CNJokes');
+  // instantiate XHR object
+  const xhr = new XMLHttpRequest();
+  // get api data async
+  xhr.open('GET', `http://api.icndb.com/jokes/random/${num}`, true);
+
+  // error handling if number value is empty
+  if(num === ''){
+    cnjokes.innerHTML = '<p style="background:#DC3545;padding-left:5px;margin-right:40px;border-radius:3px;">Please choose the number of jokes with which to afflict yourself.</p>';
+    // timeout error message
+    setTimeout(function(){
+      cnjokes.firstChild.remove();
+    }, 2000);
+
+  // convert JSON response to html
+  } else {
+    xhr.onload = function(){
+      if(this.status === 200){
+        // parse JSON as object
+        const response = JSON.parse(this.responseText);
+
+        let output = '';
+
+        // type is api specific
+        if(response.type === 'success'){
+          // loop through each joke in array
+          response.value.forEach(function(joke){
+            // append via += or will overwrite
+            output += `<li>${joke.joke}</li>`;
+          });
+
+        // error handling
+        } else {
+          output += '<li>Oops, request failed!</li>'
+        }
+        cnjokes.innerHTML = output;
+      }
+    }
+  }
+  // send to browser
+  xhr.send();
+
+  e.preventDefault();
+}
+
