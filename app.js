@@ -1339,3 +1339,54 @@ function getJokes(e){
   e.preventDefault();
 }
 
+// CALLBACK FUNCTIONS: ILLUSTRATION OF HOW THEY WORK UNDER-THE-HOOD
+const posts = [
+  {title: 'Post One', body: 'This is post one'},
+  {title: 'Post Two', body: 'This is post two'},
+];
+
+// as written only returns first two entries, not new entry, for the 'server' adds new post after the GET request fires
+// function createPost(post){
+//   // mimic server-response time-slow
+//   setTimeout(function(){
+//     posts.push(post);
+//   }, 2000);
+// }
+
+// function getPosts(){
+//   // mimic server-response time-fast
+//   setTimeout(function(){
+//     let output = '';
+//     posts.forEach(function(post){
+//       output += console.log(`${post.title}`);
+//     });
+//     return output;
+//   }, 1000)
+// }
+
+// createPost({title: 'Post Three', body: 'This is post three'});
+
+// getPosts();
+
+// adding the callback argument allows us to pass in the getPosts function within our createPost, making POST and GET requests async
+// the getPost callback will therefore not fire until the new post is added to the 'server' 
+function createPost(post, callback){
+  // mimic server-response time
+  setTimeout(function(){
+    posts.push(post);
+    callback();
+  }, 2000);
+}
+
+function getPosts(){
+  setTimeout(function(){
+    let output = '';
+    posts.forEach(function(post){
+      output += console.log(`${post.title}`);
+    });
+    return output;
+  }, 1000)
+}
+
+// createPost({title: 'Post Three', body: 'This is post three'}, getPosts);
+
