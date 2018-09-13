@@ -1370,12 +1370,45 @@ const posts = [
 
 // adding the callback argument allows us to pass in the getPosts function within our createPost, making POST and GET requests async
 // the getPost callback will therefore not fire until the new post is added to the 'server' 
-function createPost(post, callback){
-  // mimic server-response time
-  setTimeout(function(){
-    posts.push(post);
-    callback();
-  }, 2000);
+// function createPost(post, callback){
+//   // mimic server-response time
+//   setTimeout(function(){
+//     posts.push(post);
+//     callback();
+//   }, 2000);
+// }
+
+// function getPosts(){
+//   setTimeout(function(){
+//     let output = '';
+//     posts.forEach(function(post){
+//       output += console.log(`${post.title}`);
+//     });
+//     return output;
+//   }, 1000)
+// }
+
+// createPost({title: 'Post Three', body: 'This is post three'}, getPosts);
+
+// Promise() and .then() as a callback alternative
+function createPost(post){
+  // instantiate Promise()
+  return new Promise(function(resolve, reject){
+    setTimeout(function(){
+      posts.push(post);
+
+      // mimic error with boolean
+      const error = false;
+
+      if(!error){
+        // resolve this function first for .then() below
+        resolve();
+      } else {
+        // reject() covers error handling
+        reject('Error: some oopsies happened!')
+      }
+    }, 2000);
+  });
 }
 
 function getPosts(){
@@ -1388,5 +1421,10 @@ function getPosts(){
   }, 1000)
 }
 
-// createPost({title: 'Post Three', body: 'This is post three'}, getPosts);
-
+createPost({title: 'Post Three', body: 'This is post three'})
+// createPost first via promised resolve(), then() getPosts
+.then(getPosts)
+// catch() a promise error for handling
+.catch(function(err){
+  console.log(err);
+});

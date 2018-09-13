@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>JS Sandbox: Section 2</title>
   <link rel="icon" type="image/x-icon" href="js_icon.ico">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -320,10 +319,14 @@ function deleteItem(e){
         </div>
 
       <h3>RESTful APIs</h3>
-        <p>REST stands for "Representational State Transfer," and is a standardized way of using HTTP requests that allow web APIs to Create (POST), Read (GET), Update (PUT), and Delete (DELETE) data (CRUD). Since it is based on the HTTP protocol, one can use any language to use REST and RESTful APIs. Other HTTP requests include HEAD (like GET but returns the header rather than the body), OPTIONS (returns an APIs supported HTTP methods), and PATCH (updates partial resources). An HTTP request is sent to a specific endpoint URL to accomplish these methods, and forms the basis of RESTful routing.</p>
+        <p>REST stands for "Representational State Transfer," and is a standardized way of using HTTP requests that allow web APIs to Create (POST), Read (GET), Update (PUT), and Delete (DELETE) data (CRUD). Since it is based on the HTTP protocol, one can use any language to use REST and RESTful APIs. Other HTTP requests include HEAD (like GET but returns the header rather than the body), OPTIONS (returns an API's supported HTTP methods), and PATCH (updates partial resources). An HTTP request is sent to a specific endpoint URL to accomplish these methods, and forms the basis of RESTful routing.</p>
 
       <h3>Callback Functions</h3>
         <p>A callback function is a function that is passed into another function as a parameter. The <code class="language-javascript">.forEach(function callback(){})</code> method illustrates a synchronous callback, and <code class="language-javascript">setTimeout(function callback(){}, milliseconds)</code> method illustrates an asyncronous callback. How callbacks work are illustrated in our <code>app.js</code>.</p>
+
+      <h3>ES6 Promises</h3>
+        <p>Promises are an alternative to callbacks for handling asyncronous operations: they promise to do something once another operation is finished, and incorporate built-in error handling. The <code class="language-javascript">Promise()</code> takes <code class="language-javascript">resolve</code> and <code class="language-javascript">reject</code> as arguments for handling a completed function or an error. Instead of a callback it uses <code class="language-javascript">.then()</code>, as well well as <code class="language-javascript">.catch()</code> for handling errors generated in the <code class="language-javascript">Promise()</code>. See the refactoring of the callback illustration into a <code class="language-javascript">Promise()</code> in our <code>app.js</code>. The built-in Fetch API returns promises.</p>
+
 
 </body>
 
