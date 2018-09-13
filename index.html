@@ -325,8 +325,21 @@ function deleteItem(e){
         <p>A callback function is a function that is passed into another function as a parameter. The <code class="language-javascript">.forEach(function callback(){})</code> method illustrates a synchronous callback, and <code class="language-javascript">setTimeout(function callback(){}, milliseconds)</code> method illustrates an asyncronous callback. How callbacks work are illustrated in our <code>app.js</code>.</p>
 
       <h3>ES6 Promises</h3>
-        <p>Promises are an alternative to callbacks for handling asyncronous operations: they promise to do something once another operation is finished, and incorporate built-in error handling. The <code class="language-javascript">Promise()</code> takes <code class="language-javascript">resolve</code> and <code class="language-javascript">reject</code> as arguments for handling a completed function or an error. Instead of a callback it uses <code class="language-javascript">.then()</code>, as well well as <code class="language-javascript">.catch()</code> for handling errors generated in the <code class="language-javascript">Promise()</code>. See the refactoring of the callback illustration into a <code class="language-javascript">Promise()</code> in our <code>app.js</code>. The built-in Fetch API returns promises.</p>
+        <p>Promises are an alternative to callbacks for handling asyncronous operations: they promise to do something once another operation is finished, and incorporate built-in error handling. The <code class="language-javascript">Promise()</code> takes <code class="language-javascript">resolve</code> and <code class="language-javascript">reject</code> as arguments for handling a completed function or an error. Instead of a callback it uses <code class="language-javascript">.then()</code>, as well well as <code class="language-javascript">.catch()</code> for handling errors generated in the <code class="language-javascript">Promise()</code>. See the refactoring of the callback illustration into a <code class="language-javascript">Promise()</code> in our <code>app.js</code>.</p>
 
+      <h3>The Fetch API</h3>
+        <p>The built-in Fetch API returns promises, and is the current replacement for AJAX requests. It is illustrated via the following buttons and their execution in our <code>app.js</code>.</p>
+
+        <div class="container CNTitle">
+          <button class="btn btn-outline-info" id="fetch1">Fetch TXT</button>
+          <button class="btn btn-outline-success" id="fetch2">Fetch Cstmr JSON</button>
+          <button class="btn btn-outline-primary" id="fetch3">Fetch External API Data</button>
+          <br>
+          <div id="fetchOutput"></div>
+        </div>
+
+      <h3>Arrow Functions</h3>
+        <p>The arrow function </p>
 
 </body>
 

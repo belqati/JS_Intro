@@ -1421,10 +1421,96 @@ function getPosts(){
   }, 1000)
 }
 
-createPost({title: 'Post Three', body: 'This is post three'})
-// createPost first via promised resolve(), then() getPosts
-.then(getPosts)
-// catch() a promise error for handling
-.catch(function(err){
-  console.log(err);
-});
+// createPost({title: 'Post Three', body: 'This is post three'})
+// // createPost first via promised resolve(), then() getPosts
+// .then(getPosts)
+// // catch() a promise error for handling
+// .catch(function(err){
+//   console.log(err);
+// });
+
+// ILLUSTRATING THE FETCH API
+// Fetch from local .txt
+document.querySelector('#fetch1').addEventListener('click', getText);
+
+const fetchOutput = document.querySelector('#fetchOutput');
+
+function getText(){
+  fetch('public/data/data.txt')
+    .then(function(res){
+      // use .text() property since source is txt
+      return res.text();
+      // returns a promise, so another .then() is needed to handle the returned data
+    })
+    .then(function(data){
+      fetchOutput.innerHTML = data;
+
+      // remove from UI, do it again!
+      setTimeout(function(){
+        fetchOutput.firstChild.remove();
+      }, 2000);
+    })
+    .catch(function(err){
+      fetchOutput.innerHTML = err;
+    });
+}
+
+// Fetch from local .json
+document.querySelector('#fetch2').addEventListener('click', getJSON);
+
+function getJSON(){
+  fetch('public/data/customers.json')
+    .then(function(res){
+      // use .json() property since source is json
+      return res.json();
+      // returns a promise, so another .then() is needed to handle the returned data
+    })
+    .then(function(data){
+      let output = '';
+      data.forEach(function(el){
+        output += `<li>${el.name}</li>`
+      });
+      fetchOutput.innerHTML = output;
+
+      // remove from UI, do it again!
+      setTimeout(function(){
+        while(fetchOutput.firstChild){
+          fetchOutput.firstChild.remove();
+        }
+      }, 2000);
+    })
+    .catch(function(err){
+      fetchOutput.innerHTML = err;
+    });
+}
+
+// Fetch from external API
+document.querySelector('#fetch3').addEventListener('click', getExternal);
+
+function getExternal(){
+  fetch('https://api.github.com/users')
+    .then(function(res){
+      // use .json() property since source is json
+      return res.json();
+      // returns a promise, so another .then() is needed to handle the returned data
+    })
+    .then(function(data){
+      // console.log(data);
+      let output = '';
+      data.forEach(function(el){
+        output += `<li>${el.login}</li>`
+      });
+      fetchOutput.innerHTML = output;
+
+      // remove from UI, do it again!
+      setTimeout(function(){
+        while(fetchOutput.firstChild){
+          fetchOutput.firstChild.remove();
+        }
+      }, 2000);
+    })
+    .catch(function(err){
+      fetchOutput.innerHTML = err;
+    });
+}
+
