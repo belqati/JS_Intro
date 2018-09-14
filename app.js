@@ -1457,11 +1457,9 @@ function getText(){
   // refactor with arrow functions
   fetch('public/data/data.txt')
     .then(res => res.text())
-    .then(data => {fetchOutput.innerHTML = data;
-      setTimeout(function(){
-        fetchOutput.firstChild.remove();
-      }, 2000);
-    })
+    .then(data => 
+      fetchOutput.innerHTML = data,
+      setTimeout(() => fetchOutput.firstChild.remove(), 2000))
     .catch(err => fetchOutput.innerHTML = err);
 }
 
@@ -1498,11 +1496,9 @@ function getJSON(){
     .then(res => res.json())
     .then(data => {
       let output = '';
-      data.forEach(function(el){
-        output += `<li>${el.name}</li>`
-      });
+      data.forEach(el => output += `<li>${el.name}</li>`);
       fetchOutput.innerHTML = output;
-      setTimeout(function(){
+      setTimeout(() => {
         while(fetchOutput.firstChild){
           fetchOutput.firstChild.remove();
         }
@@ -1545,11 +1541,9 @@ function getExternal(){
     .then(res => res.json())
     .then(data => {
       let output = '';
-      data.forEach(function(el){
-        output += `<li>${el.login}</li>`
-      });
+      data.forEach(el => output += `<li>${el.login}</li>`);
       fetchOutput.innerHTML = output;
-      setTimeout(function(){
+      setTimeout(() => {
         while(fetchOutput.firstChild){
           fetchOutput.firstChild.remove();
         }
