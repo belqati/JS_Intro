@@ -1601,3 +1601,42 @@ function getExternal(){
 // let nameLengths = users.map(name => name.length);
 
 // console.log(nameLengths);
+
+
+// ASYNC ... AWAIT
+// async alone returns a promise
+async function myFunc(){
+
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('Howdy'), 2000);
+  });
+
+  // error handling simulation
+  const error = true;
+
+  if(!error){
+    // wait until promise is resolved
+    const res = await promise;
+    return res;
+  } else {
+    await Promise.reject(new Error('Oopsies!'));
+  }
+}
+
+// myFunc()
+//   .then(res => console.log(res))
+//   .catch(err => console.log(err));
+
+// async returns a promise
+async function getUsers(){
+  // await response from fetch call
+  const response = await fetch('https://jsonplaceholder.typicode.com/users');
+
+  // proceed once promise is resolved
+  const data = await response.json();
+
+  // proceed once second promise is resolved
+  return data;
+}
+
+getUsers().then(users => console.log(users));
