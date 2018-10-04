@@ -1639,4 +1639,61 @@ async function getUsers(){
   return data;
 }
 
-getUsers().then(users => console.log(users));
+// getUsers().then(users => console.log(users));
+
+// ERROR HANDLING WITH TRY/CATCH
+// throw core errors: reference, type, syntax, uri
+try {
+  // produce a ReferenceError
+  failedFunction();
+} catch(e){
+  // log full error (name:message)
+  console.log(e);
+  // log error name
+  console.log(e.name);
+  // log error message
+  console.log(e.message);
+  // test whether error is a specific variety; provides a boolean
+  console.log(e instanceof ReferenceError);
+  console.log(e instanceof TypeError);
+} finally {
+  console.log('Finally runs regardless of result...')
+}
+
+try {
+  // produce a TypeError
+  null.failedFunction();
+} catch(e){
+  console.log(`${e.name}: It's null, dummy!`)
+}
+
+try {
+  // produce SyntaxError via eval() --> evaluates javascript within a string
+  console.log(eval('2+2')) // 4
+  console.log(eval('Hello World')) // throws an error
+} catch(e){
+  console.log(e);
+}
+
+try {
+  // produce URIError
+  decodeURIComponent('%');
+} catch(e){
+  console.log(e);
+}
+
+// create our own error
+let someUser = {email: 'jdoe@gmail.com'};
+
+try {
+  if(!someUser.name){
+    // // throw an error message
+    // throw 'someUser has no name!'
+    // throw a specific type of error with message
+    throw new SyntaxError('someUser has no name!')
+  }
+} catch(e) {
+  // create an error variety
+  console.log(`UserError: ${e.message}`);
+}
+console.clear();
