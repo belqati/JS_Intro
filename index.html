@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JS Sandbox: Section 2</title>
+  <title>JS Notes</title>
   <link rel="icon" type="image/x-icon" href="js_icon.ico">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:400" rel="stylesheet">
@@ -402,6 +402,152 @@ try {
           <td>returns a new string, where a match is replaced with the <code class="language-javascript">'replacementString'</code></td>
         </tr>
       </table>
+
+      <p>RegExp may contain metacharacters, brackets, braces, parenthesis, and shorthand character classes. The following tables summarize some of these. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions" target="blank">MDN</a> for a fuller treatment with examples.</p>
+
+      <table>
+        <tr>
+          <th>Metacharacter</th>
+          <th>Explanation</th>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/^h/</code></td>
+          <td>charat, match must start with 'h'</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/h$/</code></td>
+          <td>bling, match must end with 'h'</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/h.llo/</code></td>
+          <td>period matches a single character</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/h*llo/</code></td>
+          <td>asterisk matches 0 or more characters</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/gre?a?y/</code></td>
+          <td>question matches optional characters</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/gre?a?y\?/</code></td>
+          <td>backslash escapes metacharacter to literal character</td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>Brackets</th>
+          <th>Character Sets Explanation</th>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/gr[ae]y/</code></td>
+          <td>must be 'a' or 'e'</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/[GF]ray/</code></td>
+          <td>must be 'G' or 'F'</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/[^GF]ray/</code></td>
+          <td>match anything but 'G' or 'F'</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/[A-Z]ray/</code></td>
+          <td>any uppercase letter</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/[a-z]ray/</code></td>
+          <td>any lowercase letter</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/[A-Za-z]ray/</code></td>
+          <td>any letter, regardless of case</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/[0-9]/</code></td>
+          <td>any number</td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>Braces</th>
+          <th>Quantifiers Explanation</th>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/hel{2}o/</code></td>
+          <td>'l' must occur <code class="language-javascript">{n}</code> times</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/hel{2,4}o/</code></td>
+          <td>'l' must occur in the range of <code class="language-javascript">{n1-n2}</code> times</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/hel{2,}o/</code></td>
+          <td>'l' must occur at least <code class="language-javascript">{n}</code> times</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/([0-9]z){3}/</code></td>
+          <td>parenthesis provide grouping; here a number followed by 'z' as a group must occur <code class="language-javascript">{n}</code> times</td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>Character Class</th>
+          <th>Shorthand Explanation</th>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/\w/</code></td>
+          <td>match any alphanumeric character or '_'</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/\w+/</code></td>
+          <td>match any alphanumeric character or '_' one or more times</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/\W/</code></td>
+          <td>match any non-alphanumeric character</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/\d/</code></td>
+          <td>match any numeral</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/\D/</code></td>
+          <td>match any non-numeral</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/\s/</code></td>
+          <td>match any whitespace (e.g., <kbd>space</kbd>, <kbd>tab</kbd>)</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/\S/</code></td>
+          <td>match any non-whitespace</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/hi\b/</code></td>
+          <td>marks a word-boundary: e.g., matches 'hi' but not 'hide'</td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>Assertions</th>
+          <th>Explanation</th>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/x(?=y)/</code></td>
+          <td>match 'x' only if followed by 'y'</td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">/x(?!y)/</code></td>
+          <td>match 'x' only if NOT followed by 'y'</td>
+        </tr>
+      </table>
+
 
 </body>
 

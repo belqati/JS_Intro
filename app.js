@@ -1733,3 +1733,70 @@ console.log(result);
 // replace() returns new string
 let newStr = str.replace(re, 'Hi');
 console.log(newStr);
+
+console.clear();
+
+// regExp metacharacters and use in functions
+// literal characters
+re = /yo/i;
+
+// metacharacters
+re = /^h/i; // must start with
+re = /ld!$/i; // must end with
+re = /^yo$/ig; // must begin and end with--does not behave the way Brad suggests...
+re = /h.llo/i; // period matches any ONE character
+re = /h*llo/i; // matches any character 0 or more
+re = /gre?a?y/i; // matches optional chars or none
+re = /gre?a?y\?/i; // escape metachars to make them literal
+
+// brackets [] - char sets
+re = /gr[ae]y/i; // must be a or e
+re = /[GF]ray/; // must be G or F
+re = /[^GF]ray/i; // match anything but G or F
+re = /[A-Z]ray/; // match any uppercase letter
+re = /[a-z]ray/; // match any lowercase letter
+re = /[A-Za-z]ray/; // match any letter
+re = /[0-9]ray/; // match any digit
+
+// braces {} - quantifiers
+re = /hel{2}o/i; // must occur {n} times
+re = /hel{2,4}o/i; // must occur {n to n} range
+re = /hel{2,}o/i; // must occur at least {n} times
+
+// parenthesis () - grouping
+re = /([0-9]z){3}/;
+
+// shorthand char classes
+re = /\w/; // match word character-alphanumeric or _
+re = /\w+/; // + matches one or more
+re = /\W/; // match non-word character
+re = /\d/; // match any digit
+re = /\d+/; // match any digit one or more times
+re = /\D/; // match any non-digit
+re = /\s/; // match whitespace char
+re = /\S/; // match non-whitespace char
+re = /hi\b/i; // mark word boundary, strict match
+
+// assertions
+re = /x(?=y)/; // match x only if followed by y
+re = /x(?!y)/; // match x only if not followed by y
+
+// string to match
+str = 'xy';
+
+//log results
+result = re.exec(str);
+console.log(result)
+
+// function for testing if re has a match in str
+function reTest(re, str){
+  if(re.test(str)){
+    console.log(`"${str}" has a match for "${re.source}"`);
+  } else {
+    console.log(`"${str}" does NOT have a match for "${re.source}"`);
+  }
+}
+reTest(re, str);
+
+console.clear();
+
