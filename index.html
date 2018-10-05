@@ -371,6 +371,38 @@ try {
   console.log(`UserError: ${e.message}`); // UserError: someException has occurred!
 }</code></pre>
 
+    <h2>Regular Expressions</h2>
+      <p>Regular expressions (regExp) function similarly accross languages in both form and syntax: they are not unique to JS. RegEx are used to identify patterns for validation, and for pulling information (e.g., email, SS-numbers, credit-card numbers, and so forth). This overview is considered beginner and intermediate level.</p>
+
+      <p>A regExp is bounded by forward slashes, after which flags may appear: e.g., <code class="language-javascript">let re = /hello/ig</code> represents the pattern "hello", where the <code class="language-javascript">i</code> flag makes the match case-insensitive, and the <code class="language-javascript">g</code> flag makes it global (it can return all matches, not just the first). The following methods are commonly used with regExp.</p>
+
+      <table>
+        <tr>
+          <th>Method</th>
+          <th>Explanation</th>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">re.exec('searchString')</code></td>
+          <td>where <code class="language-javascript">re</code> is a regExp as a variable; returns an array <code class="language-javascript">['searchString', index: #, input: 'searchedString']</code>, otherwise returns <code class="language-javascript">null</code></td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">re.test('searchString')</code></td>
+          <td>returns the boolean <code class="language-javascript">true</code> or <code class="language-javascript">false</code></td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">str.match(re)</code></td>
+          <td>where <code class="language-javascript">str</code> is the searched string as a variable; also returns an array <code class="language-javascript">['searchString', index: #, input: 'searchedString']</code> or <code class="language-javascript">null</code></td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">str.search(re)</code></td>
+          <td>returns the index of the first match, otherwise returns <code class="language-javascript">-1</code></td>
+        </tr>
+        <tr>
+          <td><code class="language-javascript">str.replace(re, 'replacementString')</code></td>
+          <td>returns a new string, where a match is replaced with the <code class="language-javascript">'replacementString'</code></td>
+        </tr>
+      </table>
+
 </body>
 
 <footer>

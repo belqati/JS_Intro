@@ -1697,3 +1697,39 @@ try {
   console.log(`UserError: ${e.message}`);
 }
 console.clear();
+
+// REGULAR EXPRESSIONS
+// initialize a RegExp literal
+let re;
+re = /he/;
+re = /he/i; // i flag = case insensitive
+re = /he/g; // g flag = global search, find all occurrences, not just the first
+
+console.log(re); // logs entire literal
+console.log(re.source); // logs string
+
+// exec() returns an array ['searchString', index: #, input: 'searchedString'], otherwise null
+let result = re.exec('yo, Hello world, hello!');
+console.log(result);
+console.log(result[0]);
+console.log(result.index);
+console.log(result.input);
+
+// test() returns boolean
+re = /hello/i;
+result = re.test('Hello');
+console.log(result);
+
+// match() returns array like exec(), otherwise null
+// difference is in placement of RegExp and string, results are the same
+let str = 'Yo, Hello There';
+result = str.match(re);
+console.log(result);
+
+// search() returns index of first match, otherwise -1
+result = str.search(re);
+console.log(result);
+
+// replace() returns new string
+let newStr = str.replace(re, 'Hi');
+console.log(newStr);
