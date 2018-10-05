@@ -40,7 +40,7 @@ code {
   margin-bottom: 20px;
 }
 
-.CNJokeGenerator {
+.CNJokeGenerator, .formValidation {
   border: 1px solid white;
   border-radius: 5px;
   margin: 20px 0 20px 0;
@@ -51,3 +51,4 @@ code {
 .CNTitle {
   margin-bottom: 15px;
 }
+

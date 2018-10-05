@@ -548,6 +548,49 @@ try {
         </tr>
       </table>
 
+      <p>These basic regExp principles and methods are used in <code>app.js</code> with the following form for validating name, zipcode, email, and phone number fields on <code>blur</code>. Name accepts any letters, whitespace, and period, but nothing else (like digits). Zipcode accepts either five or nine digits, with or without a dash or space. Email accepts a typical email pattern, but without spaces, etc. Phone number accepts American phone pattern, with or without parenthesis, spaces, dashes, or dots. These are not all inclusive, are intended only for illustration, and are no replacement for existing libraries.</p>
+
+      <div class="container-fluid formValidation">
+        <h3>Form Validation Example</h3>
+        <form>
+          <div class="form-row">
+            <div class="col form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Name">
+              <div class="invalid-feedback">
+                Name must be 2 to 10 characters
+              </div>
+            </div>
+            <div class="col">
+              <label for="zip">Zipcode</label>
+              <input type="text" class="form-control" id="zip" placeholder="Zipcode">
+              <div class="invalid-feedback">
+                Enter a valid zipcode
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col form-group">
+              <label for="email">Email</label>
+              <!-- N.B.: type='email' better for HTML5, but here a regExp exercise -->
+              <input type="text" class="form-control" id="email" placeholder="Email">
+              <div class="invalid-feedback">
+                Enter a valid email
+              </div>
+            </div>
+            <div class="col">
+              <label for="phone">Phone Number</label>
+              <!-- N.B.: type='email' better for HTML5, but here a regExp exercise -->
+              <input type="text" class="form-control" id="phone" placeholder="Phone Number">
+              <div class="invalid-feedback">
+                Enter a valid phone number
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
 
 </body>
 
