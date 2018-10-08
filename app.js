@@ -1853,3 +1853,37 @@ function validatePhone(){
   }
 }
 
+// ITERATOR EXAMPLE
+function nameIterator(names){
+  let nextIndex = 0;
+
+  return {
+    next: function(){
+      return nextIndex < names.length ?
+      {value: names[nextIndex++], index: nextIndex, done: false} :
+      {done: true}
+    }
+  }
+}
+
+// array of names to pass to iterator
+let namesArr = ['Bowy', 'Moonbeam', 'Starra'];
+// init iterator and pass in array
+let names = nameIterator(namesArr);
+// log iterator in action
+console.log(names.next())
+console.log(names.next().value)
+console.log(names.next())
+console.log(names.next())
+
+// GENERATOR EXAMPLE
+function* sayNames(){
+  yield 'Bowy';
+  yield 'Moonbeam';
+  yield 'Starra'
+}
+names = sayNames();
+console.log(names.next());
+console.log(names.next().value);
+console.log(names.next());
+console.log(names.next());
