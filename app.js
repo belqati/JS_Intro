@@ -1887,3 +1887,83 @@ console.log(names.next());
 console.log(names.next().value);
 console.log(names.next());
 console.log(names.next());
+
+console.clear();
+
+// PROFILESCROLLER EXAMPLE
+// data normally from API or backend, here for illustration only
+let profileData = [
+  {
+    name: 'Joe Schmoe',
+    age: 25,
+    employer: 'Wallmart',
+    position: 'Systems Analyst',
+    location: 'Chicago, IL',
+    image: 'https://randomuser.me/api/portraits/men/56.jpg'
+  },
+  {
+    name: 'Jannette Impartial',
+    age: 32,
+    employer: 'WBEZ',
+    position: 'Voice Specialist',
+    location: 'Wheaton, IL',
+    image: 'https://randomuser.me/api/portraits/women/56.jpg'
+  },
+  {
+    name: 'Flora Petrie',
+    age: 45,
+    employer: 'Cairo Museum',
+    position: 'Curator',
+    location: 'Cairo, Egypt',
+    image: 'https://randomuser.me/api/portraits/women/99.jpg'
+  }
+];
+
+// init iterator
+let profiles = profileIterator(profileData);
+
+// next event
+document.querySelector('#next').addEventListener('click', nextProfile);
+
+// call first profile on page load
+nextProfile();
+
+// display nextProfile
+function nextProfile(){
+  // track iteration sequence
+  const currentProfile = profiles.next().value;
+
+  if(currentProfile !== undefined){
+    // display currentProfile image
+    document.querySelector('#imageDisplay').innerHTML = `
+      <img src="${currentProfile.image}">
+    `;
+
+    // display currentProfile data
+    document.querySelector('#profileDisplay').innerHTML = `
+      <ul class="list-group" style="color: black">
+        <li class="list-group-item">Name: ${currentProfile.name}</li>
+        <li class="list-group-item">Age: ${currentProfile.age}</li>
+        <li class="list-group-item">Employer: ${currentProfile.employer}</li>
+        <li class="list-group-item">Background: I am a ${currentProfile.position} who works in ${currentProfile.location}.</li>
+      </ul>
+    `;
+  } else {
+    // end of profileData array, reload page
+    window.location.reload();
+  }
+
+}
+
+// profile iterator
+function profileIterator(profiles){
+  let nextIndex = 0;
+
+  return {
+    next: function(){
+      return nextIndex < profiles.length ?
+      {value: profiles[nextIndex++], done: false} :
+      {done: true}
+    }
+  }
+}

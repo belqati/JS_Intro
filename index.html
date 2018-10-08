@@ -593,7 +593,22 @@ try {
     <h2>Iterators and Generators</h2>
       <p>"[A]n iterator is an object which defines a sequence and potentially a return value upon its termination" (MDN). Iterators use a <code class="language-javascript">next()</code> method that returns an object with the <code class="language-javascript">value</code> of the item in the iteration, and <code class="language-javascript">done</code> as either <code class="language-javascript">false</code> (continue iterating) or <code class="language-javascript">true</code> (all items iterated). Repeatedly calling <code class="language-javascript">next()</code> "consumes" the iterator until <code class="language-javascript">done: true</code>, also the result of all successive calls. While commonly used for iterating over arrays, they are useful for handling objects as well.</p>
 
-      <p>A generator produces similar results but in a simplified way, where the <code class="language-javascript">next()</code> method with its <code class="language-javascript">value</code> and <code class="language-javascript">done</code> properties are implicit. Generators use the following syntax: <code class="language-javascript">function* generatorFunction(){ doSomething until yield; again yield; again yield; etc. }</code>.</p>
+      <p>A generator produces similar results but in a simplified way, where the <code class="language-javascript">next()</code> method with its <code class="language-javascript">value</code> and <code class="language-javascript">done</code> properties are implicit. Generators use the following syntax: <code class="language-javascript">function* generatorFunction(){ doSomething until yield; again yield; again yield; etc. }</code>. The following profile scroller provides a practical illustration (see <code>app.js</code>).</p>
+
+    <div class="container-fluid profileScroller">
+      <div class="row">
+        <div class="col -md-6 mx-auto text-center">
+          <h3>profileScroller</h3>
+          <div id="imageDisplay"></div>
+          <br>
+          <div id="profileDisplay"></div>
+          <br>
+          <button id="next" class="btn btn-outline-info btn-block">Next Profile</button>
+          <br>
+        </div>
+      </div>
+      
+    </div>
 
 </body>
 
