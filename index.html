@@ -607,8 +607,19 @@ try {
           <br>
         </div>
       </div>
-      
     </div>
+
+    <h2>Symbols</h2>
+      <p>The <code>symbol</code> is a primitive datatype, and is invoked via <code class="language-javascript">Symbol()</code>. Each invocation is essentially unique, where <code class="language-javascript">Symbol() === Symbol()</code> returns <code>false</code>. Thus, when assigned to a variable, that variable will be unique.</p>
+
+<pre class="line-numbers"><code class="language-javascript">const sym1 = Symbol();
+const sym2 = Symbol();
+
+console.log(sym1 === sym1); // true
+console.log(sym1 === sym2); // false</code></pre>
+
+      <p>A descriptor is optional, which functions to distinguish symbols during trouble-shooting: e.g., <code class="language-javascript">Symbol('sym1')</code>. For normal development, symbols are principally good for avoiding namespace collision, where variables are not accidentally (or intentionally) highjacked through the implementation of libraries, updates, and so forth. The <code>symbol</code> makes a solid alternative to the <code>string</code> and <code>number</code> everywhere a unique value is desireable. See the excellent discussion by Jason Orendorff in <a href="https://hacks.mozilla.org/2015/06/es6-in-depth-symbols/" target="blank">"ES6 in Depth: Symbols."</a></p>
+
 
 </body>
 

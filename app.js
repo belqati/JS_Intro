@@ -1967,3 +1967,32 @@ function profileIterator(profiles){
     }
   }
 }
+
+// SYMBOLS
+// create a symbol; each is unique
+const sym1 = Symbol();
+const sym2 = Symbol();
+
+console.log(Symbol() === Symbol());
+console.log(sym1 === sym1);
+console.log(sym1 === sym2);
+
+// unique object keys
+const KEY1 = Symbol('key1');
+const KEY2 = Symbol('key2');
+let myObj = {};
+
+myObj[KEY1] = 'property1';
+myObj[KEY2] = 'property2';
+myObj.key3 = 'property3';
+myObj.key4 = 'property4';
+
+console.log(myObj[KEY2])
+
+// not enumberable in for...in
+for(let i in myObj){
+  console.log(`${i}: ${myObj[i]}`);
+}
+
+// ignored by JSON.stringify
+console.log(JSON.stringify(myObj))
