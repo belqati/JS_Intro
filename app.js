@@ -1996,3 +1996,52 @@ for(let i in myObj){
 
 // ignored by JSON.stringify
 console.log(JSON.stringify(myObj))
+
+console.clear();
+
+// DESTRUCTURING
+a, b;
+[a, b] = [1, 2];
+console.log(a, b);
+
+// with the spread operator
+({ a, b, ...rest} = { a:1, b:2, c:3, d:4, e:5 });
+console.log(rest);
+console.log(rest.d);
+
+// array destructuring
+let pets = ['Spot', 'Ash', 'Jumper'];
+// let [pet1, pet2, pet3] = pets;
+// console.log(pet1, pet2, pet3);
+
+// parse an array returned from a function
+function getPets(){
+  return pets;
+}
+let pet1, pet2, pet3;
+[pet1, pet2, pet3] = getPets();
+
+console.log(pet1, pet2, pet3);
+
+// object destructuring
+let person = {
+  name: 'Jane Doe',
+  ages: 55,
+  loc: 'Tucson',
+  sayHello: function(){
+    console.log("Howdy Pardner!");
+  }
+}
+
+// // old way of accessing obj info
+// let name = person.name,
+//     ages = person.ages,
+//     loc = person.loc,
+//     sayHello = person.sayHello;
+// console.log(name, ages, loc);
+// sayHello();
+
+// destructure method
+let { name, ages, loc, sayHello } = person;
+console.log(name, ages, loc);
+sayHello();

@@ -610,7 +610,7 @@ try {
     </div>
 
     <h2>Symbols</h2>
-      <p>The <code>symbol</code> is a primitive datatype, and is invoked via <code class="language-javascript">Symbol()</code>. Each invocation is essentially unique, where <code class="language-javascript">Symbol() === Symbol()</code> returns <code>false</code>. Thus, when assigned to a variable, that variable will be unique.</p>
+      <p>The <code>symbol</code> is a primitive datatype, and is invoked via <code class="language-javascript">Symbol()</code>. Each invocation is essentially unique, where <code class="language-javascript">Symbol() === Symbol()</code> returns <code>false</code>. Thus, when assigned to a variable, that variable will be unique. Note that <code class="language-javascript">Symbol()</code> does not have a constructor, so we do not use the <code class="language-javascript">new</code> keyword (otherwise it will throw an exception).</p>
 
 <pre class="line-numbers"><code class="language-javascript">const sym1 = Symbol();
 const sym2 = Symbol();
@@ -619,6 +619,42 @@ console.log(sym1 === sym1); // true
 console.log(sym1 === sym2); // false</code></pre>
 
       <p>A descriptor is optional, which functions to distinguish symbols during trouble-shooting: e.g., <code class="language-javascript">Symbol('sym1')</code>. For normal development, symbols are principally good for avoiding namespace collision, where variables are not accidentally (or intentionally) highjacked through the implementation of libraries, updates, and so forth. The <code>symbol</code> makes a solid alternative to the <code>string</code> and <code>number</code> everywhere a unique value is desireable. See the excellent discussion by Jason Orendorff in <a href="https://hacks.mozilla.org/2015/06/es6-in-depth-symbols/" target="blank">"ES6 in Depth: Symbols."</a></p>
+
+    <h2>Destructuring</h2>
+      <p>Destructuring syntax "makes it possible to unpack values from arrays, or properties from objects, into distinct variables" (MDN). While such unpacking is certainly not new, destructuring provides simpler and easier to read syntax for accessing array and object values. Rather than declaring a new variable for each element in an array or object, destructuring allows us to place them on a single line, as illustrated in the following code-block.</p>
+
+<pre class="line-numbers"><code class="language-javascript">const a, b;
+[a, b] = [1, 2];
+console.log(a, b); // 1 2
+
+// with the spread operator ('rest' can anything)
+({ a, b, ...rest} = { a:1, b:2, c:3, d:4, e:5 });
+console.log(rest); // {c:3, d:4, e:5}
+console.log(rest.d); // 4
+
+// array destructuring
+let pets = ['Spot', 'Ash', 'Jumper'];
+let [pet1, pet2, pet3] = pets;
+console.log(pet1, pet2, pet3); // Spot Ash Jumper
+
+// object destructuring
+let person = {
+  name: 'Jane Doe',
+  age: 55,
+  city: 'Tucson',
+  sayHello: function(){ console.log("Howdy Pardner!"); }
+}
+
+let { name, age, city, sayHello } = person;
+console.log(name, age, city); // Jane Doe 55 Tucson
+sayHello(); // Howdy Pardner!
+
+// rather than the old way:
+let name = person.name,
+    age = person.age,
+    city = person.city,
+    sayHello = person.sayHello;</code></pre>
+
 
 
 </body>
