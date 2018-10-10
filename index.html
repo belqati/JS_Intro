@@ -655,6 +655,22 @@ let name = person.name,
     city = person.city,
     sayHello = person.sayHello;</code></pre>
 
+    <h2>Maps</h2>
+      <p>The <code class="language-javascript">Map()</code> function allows us to use <em>any</em> datatype as a key. Thus, it is similar to an <code>object</code>, but does not convert its keys to a <code>string</code>. That is, <code class="language-javascript">Map()</code> can use an <code>object</code> or a <code>function</code> as a key. Map values are set and gotten with the following syntax: <code class="language-javascript">someMap.set(keyVar, 'someValue')</code> and <code class="language-javascript">someMap.get(keyVar) // returns 'someValue'</code>. The number of keys in a map can be obtained via <code class="language-javascript">someMap.size // returns a number</code>. Maps are also iterable using loops. For all of these see the associated <code>app.js</code>.</p>
+
+      <p>Practically speaking, maps alleviate the need to add an identifier such as <code class="language-javascript">{id: id#}</code> to an object, for the object itself functions as the key. The following code-block illustrates (taken from <a href="https://javascript.info/map-set-weakmap-weakset" target="blank">Ilya Kantor's excellent discussion</a>).</p>
+
+<pre class="line-numbers"><code class="language-javascript">// object as key
+let john = {name: 'John'};
+// for every user store visits count
+let visitsCountMap = new Map();
+// john is the key for the map
+visitsCountMap.set(john, 123);
+
+console.log(visitsCountMap.get(john)); // 123</code></pre>
+
+    <h2>Sets</h2>
+      <p>A <code class="language-javascript">Set()</code> is a specific type of object that holds a set of unique values of any datatype. It is without keys, and each value appears only once. We could use an array to find unique elements via the <code class="language-javascript">array.find()</code> method, but it creates a performance hit due to the need to loop through the entire array. The following methods are common: <code class="language-javascript">new Set()</code>, <code class="language-javascript">someSet.add('someValue')</code>, <code class="language-javascript">someSet.size // returns a number</code>, <code class="language-javascript">someSet.has('someValue') // returns a boolean</code>, <code class="language-javascript">someSet.delete('someValue')</code>. Like <code class="language-javascript">Map()</code>, <code class="language-javascript">Set()</code> is iterable, and can be converted into an <code>array</code>.</p>
 
 
 </body>

@@ -2045,3 +2045,122 @@ let person = {
 let { name, ages, loc, sayHello } = person;
 console.log(name, ages, loc);
 sayHello();
+
+console.clear();
+
+// MAPS
+// specific example of object as key
+let john = {name: "John"};
+// for every user, let's store his visits count
+let visitsCountMap = new Map();
+// john is the key for the map
+visitsCountMap.set(john, 123);
+console.log(visitsCountMap); // {key: {name: "John"}, value: 123}
+console.log(visitsCountMap.get(john)); // 123
+console.log(john);
+
+// old way:
+// we add the id field
+john = { name: "John", id: 1 };
+let visitsCounts = {};
+// now store the value by id
+visitsCounts[john.id] = 123;
+console.log( visitsCounts[john.id] ); // 123
+
+// generic examples with string, object, and function as keys
+let map1 = new Map();
+let keyString = 'stringKey',
+    keyObject = {OBJkey: 'someKey'},
+    keyFunction = function key(){};
+
+// set map values by key
+map1.set(keyString, 'keyString value');
+map1.set(keyObject, 'keyObject value');
+map1.set(keyFunction, 'keyFunction value');
+
+// get map values by key
+console.log(map1.get(keyString), map1.get(keyObject), map1.get(keyFunction));
+
+// count values
+console.log(map1.size);
+
+// iterating through maps
+// loop to obtain key:value
+for(let [key, value] of map1) {
+  console.log(`${key} : ${value}`);
+}
+
+// the someMap.keys() method returns an iterable object (MapIterator) of a map's keys; similarly someMap.values()
+console.log(map1.keys());
+console.log(map1.values());
+
+// loop to obtain keys or values only
+for(let key of map1.keys()) {
+  console.log(key);
+}
+for(let value of map1.values()) {
+  console.log(value);
+}
+
+// loop via forEach; not the order of arguments and the necessity for both...
+map1.forEach(function(value, key) {
+  console.log(`${key} : ${value}`);
+});
+map1.forEach(function(value, key) {
+  // w/o value arg, key prints value :-)
+  console.log(key);
+});
+
+// convert to an array
+// array of key:value
+let keyValArr = Array.from(map1);
+console.log(keyValArr);
+// array of keys
+let keyArr = Array.from(map1.keys());
+console.log(keyArr);
+// array of values
+let valArr = Array.from(map1.values());
+console.log(valArr);
+
+console.clear();
+
+// SETS
+let set1 = new Set();
+// add values
+set1.add(100);
+set1.add('setString');
+set1.add({name: 'Jill'});
+set1.add(true);
+set1.add('setString');
+console.log(set1);
+
+let setArr1 = [300, 500, 300, 500, 700];
+let set2 = new Set(setArr1);
+console.log(set2);
+
+// get count
+console.log(set1.size, set2.size);
+
+// check for values--returns a boolean
+console.log(set1.has('setString'));
+console.log(set2.has(300+400)) // true
+// obj check fails, for obj is not a primitive datatype
+console.log(set1.has({name: 'Jill'}));
+
+// delete from set
+set2.delete(300);
+console.log(set2);
+
+// iterate sets
+for(let item of set1){
+  console.log(item);
+}
+
+set1.forEach((value) => {
+  console.log(value);
+});
+
+// convert to array
+let setArr2 = Array.from(set1);
+console.log(setArr2);
+
