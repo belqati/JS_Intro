@@ -2241,3 +2241,55 @@ console.log(instanceA);
 console.log(instanceB);
 console.log(instanceA === instanceB);
 
+console.clear();
+
+// FACTORY PATTERN
+// create member objects
+function MemberFactory(){
+  this.createMember = function(name, type){
+    let member;
+
+    if(type === 'Simple'){
+      member = new SimpleMembership(name);
+    } else if (type === 'Standard'){
+      member = new StandardMembership(name);
+    } else if (type === 'Super'){
+      member = new SuperMembership(name);
+    }
+
+    member.type = type;
+
+    member.define = function(){
+      console.log(`${this.name} purchased ${this.type} Membership for ${this.cost}.`)
+    }
+
+    return member;
+  }
+}
+// create methods for factory
+let SimpleMembership = function(name){
+  this.name = name;
+  this.cost = '$10';
+}
+let StandardMembership = function(name){
+  this.name = name;
+  this.cost = '$25';
+}
+let SuperMembership = function(name){
+  this.name = name;
+  this.cost = '$50';
+}
+
+// collect members 
+let members = [];
+// init MemberFactory
+let factory = new MemberFactory();
+
+members.push(factory.createMember('Jannelle Noll', 'Super'));
+members.push(factory.createMember('Piotre Bisquet', 'Simple'));
+members.push(factory.createMember('Lucie Lee', 'Standard'));
+members.push(factory.createMember('Zane Zaney', 'Super'));
+
+members.forEach(function(member){
+  member.define();
+});

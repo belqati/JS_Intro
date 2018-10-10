@@ -676,7 +676,7 @@ console.log(visitsCountMap.get(john)); // 123</code></pre>
       <p>All languages use patterning at all levels, from a simple block of code up to entire applications. As such they can be thought of as templates designed for any number of situations (e.g., the <code>constructor</code> and <code>prototype</code>). In this section we will examine the following varieties: Module and Revealing Module, Singleton, Factory, Observer, Mediator, and State. For examples of these see <code>app.js</code>.</p>
 
       <h3>Standard Module Pattern</h3>
-        <p>This pattern uses an IIFE for declaring private and public variables and functions. Its basic form is as follows:</p>
+        <p>This pattern uses an IIFE for declaring private and public variables and functions. All variations of the Module pattern reminds me of JS classes. The basic form of the Module is as follows:</p>
 
 <pre class="line-numbers"><code class="language-javascript">let someModule = (function(){
   // declare private vars and functions
@@ -728,10 +728,10 @@ ItemCtrl.add({id: 1, name: 'Jane'}); // Item added.
 console.log(ItemCtrl.get(1)); // {id: 1, name: 'Jane'}</code></pre>
 
       <h3>Singleton Pattern</h3>
-        <p>This pattern is also a variation on the Module patter. It returns only one instance, where repeated invocations result in the same return. Many devs apparently recommend against using this pattern.</p>
+        <p>This pattern is also a variation on the Module pattern. It returns only one instance, where repeated invocations result in the same return. Many devs apparently recommend against using this pattern.</p>
 
       <h3>Factory Pattern</h3>
-        <p>This pattern </p>
+        <p>This pattern is ideal for producing multiple unique objects that share the same basic structure: the same keys but with different values. An example use case is the creation of user profiles and the like, which share common categories like name, age, email, and so forth.</p>
 
       <h3>Observer Pattern</h3>
         <p>This pattern </p>
