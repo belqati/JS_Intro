@@ -2164,3 +2164,80 @@ set1.forEach((value) => {
 let setArr2 = Array.from(set1);
 console.log(setArr2);
 
+console.clear();
+
+// JS PATTERNS
+// STANDARD MODULE PATTERN
+let SomeModule = (function(){
+  // declare private vars and functions
+  let someVar = 'A private variable!'
+  let changeVar = function(){
+    let someOtherVar = 'Another private variable!';
+    someVar = someOtherVar;
+  }
+  return {
+  // declare public vars and functions
+    callChangeVar: function(){
+      changeVar();
+      console.log(someVar);
+    }
+  }
+})();
+
+SomeModule.callChangeVar(); // Another private variable!
+// someModule.changeVar(); // TypeError (function does not exist)
+console.log(SomeModule.someVar); // undefined (var does not exist)
+
+// REVEALING MODULE PATTERN
+let ItemCtrl = (function(){
+  // private var for data manipulation
+  let data = [];
+  // private function for adding to data
+  function add(item){
+    data.push(item);
+    console.log('Item added.');
+  }
+  // private function for getting data via id
+  function get(id){
+    return data.find(item => {
+      return item.id === id;
+    });
+  }
+
+  // public methods for adding and getting
+  return {
+    add: add,
+    get: get
+  }
+})();
+
+ItemCtrl.add({id: 1, name: 'Jane'}); // Item added.
+ItemCtrl.add({id: 2, name: 'Joanne'}); // Item added.
+console.log(ItemCtrl.get(2)); // {id: 2, name: 'Joanne'}
+console.log(ItemCtrl.get(1)); // {id: 1, name: 'Jane'}
+
+// SINGLETON PATTERN
+let Singleton = (function(){
+  let instance;
+
+  function createInstance(){
+    let object = new Object({user: 'someUser'});
+    return object;
+  }
+
+  return {
+    getInstance: function(){
+      if(!instance){
+        instance = createInstance();
+      }
+      return instance;
+    }
+  }
+})();
+// produces only a single instance; repeated invocations return the same
+let instanceA = Singleton.getInstance();
+let instanceB = Singleton.getInstance();
+console.log(instanceA);
+console.log(instanceB);
+console.log(instanceA === instanceB);
+

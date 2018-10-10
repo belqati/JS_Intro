@@ -672,6 +672,75 @@ console.log(visitsCountMap.get(john)); // 123</code></pre>
     <h2>Sets</h2>
       <p>A <code class="language-javascript">Set()</code> is a specific type of object that holds a set of unique values of any datatype. It is without keys, and each value appears only once. We could use an array to find unique elements via the <code class="language-javascript">array.find()</code> method, but it creates a performance hit due to the need to loop through the entire array. The following methods are common: <code class="language-javascript">new Set()</code>, <code class="language-javascript">someSet.add('someValue')</code>, <code class="language-javascript">someSet.size // returns a number</code>, <code class="language-javascript">someSet.has('someValue') // returns a boolean</code>, <code class="language-javascript">someSet.delete('someValue')</code>. Like <code class="language-javascript">Map()</code>, <code class="language-javascript">Set()</code> is iterable, and can be converted into an <code>array</code>.</p>
 
+    <h2>Patterns in JS</h2>
+      <p>All languages use patterning at all levels, from a simple block of code up to entire applications. As such they can be thought of as templates designed for any number of situations (e.g., the <code>constructor</code> and <code>prototype</code>). In this section we will examine the following varieties: Module and Revealing Module, Singleton, Factory, Observer, Mediator, and State. For examples of these see <code>app.js</code>.</p>
+
+      <h3>Standard Module Pattern</h3>
+        <p>This pattern uses an IIFE for declaring private and public variables and functions. Its basic form is as follows:</p>
+
+<pre class="line-numbers"><code class="language-javascript">let someModule = (function(){
+  // declare private vars and functions
+  let someVar = 'A private variable!'
+  let changeVar = function(){
+    let someOtherVar = 'Another private variable!';
+    someVar = someOtherVar;
+  }
+
+  // declare public vars and functions
+  return {
+    callChangeVar: function(){
+      changeVar();
+      console.log(someVar);
+    }
+  }
+})();
+
+someModule.callChangeVar(); // Another private variable!
+console.log(someModule.someVar); // undefined (variable does not exist)
+someModule.changeVar(); // TypeError (function does not exist)</code></pre>
+
+      <h3>Revealing Module Pattern</h3>
+        <p>This pattern is a variation on the Module pattern, albeit with an emphasis on public functions as methods. While the Revealing Module is cleaner, the regular Module is more flexible. The following code-block illustrates.</p>
+
+<pre class="line-numbers"><code class="language-javascript">let ItemCtrl = (function(){
+  // private var for data manipulation
+  let data = [];
+  // private function for adding to data
+  function add(item){
+    data.push(item);
+    console.log('Item added.');
+  }
+  // private function for getting data via id
+  function get(id){
+    return data.find(item => {
+      return item.id === id;
+    });
+  }
+
+  // public methods for adding and getting
+  return {
+    add: add,
+    get: get
+  }
+})();
+
+ItemCtrl.add({id: 1, name: 'Jane'}); // Item added.
+console.log(ItemCtrl.get(1)); // {id: 1, name: 'Jane'}</code></pre>
+
+      <h3>Singleton Pattern</h3>
+        <p>This pattern is also a variation on the Module patter. It returns only one instance, where repeated invocations result in the same return. Many devs apparently recommend against using this pattern.</p>
+
+      <h3>Factory Pattern</h3>
+        <p>This pattern </p>
+
+      <h3>Observer Pattern</h3>
+        <p>This pattern </p>
+
+      <h3>Mediator Pattern</h3>
+        <p>This pattern </p>
+
+      <h3>State Pattern</h3>
+        <p>This pattern </p>
 
 </body>
 
