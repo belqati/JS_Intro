@@ -734,7 +734,16 @@ console.log(ItemCtrl.get(1)); // {id: 1, name: 'Jane'}</code></pre>
         <p>This pattern is ideal for producing multiple unique objects that share the same basic structure: the same keys but with different values. An example use case is the creation of user profiles and the like, which share common categories like name, age, email, and so forth.</p>
 
       <h3>Observer Pattern</h3>
-        <p>This pattern </p>
+        <p>This pattern makes a good subscription model, allowing one to subscribe and unsubscribe from one or more things using click events. The following buttons illustrate via the console and <code>app.js</code>. When "Subscribe to Milliseconds" and/or "Subscribe to Seconds" is clicked, "Fire" will log the current millisecond and/or second on click. In turn, "Fire" logs nothing for unsubscribed events.</p>
+
+        <div class="mb-3">
+          <button class="btn btn-outline-primary sub-ms">Subscribe to Milliseconds</button>
+          <button class="btn btn-outline-warning unsub-ms">Unsubscribe from Milliseconds</button>
+          <br><br>
+          <button class="btn btn-outline-info sub-s">Subscribe to Seconds</button>
+          <button class="btn btn-outline-danger unsub-s">Unsubscribe from Seconds</button>
+          <button class="btn btn-outline-success fire">Fire</button>
+        </div>
 
       <h3>Mediator Pattern</h3>
         <p>This pattern </p>

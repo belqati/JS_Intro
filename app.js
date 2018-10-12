@@ -2293,3 +2293,97 @@ members.push(factory.createMember('Zane Zaney', 'Super'));
 members.forEach(function(member){
   member.define();
 });
+
+console.clear();
+
+// OBSERVER PATTERN--subscription model
+// allows one to subscribe/unsubscribe
+// // constructor function using prototypes
+// function EventObserver(){
+//   this.observers = [];
+// }
+
+// EventObserver.prototype = {
+//   subscribe: function(fn){
+//     this.observers.push(fn);
+//     console.log(`Subscribed to ${fn.name}`);
+//   },
+
+//   unsubscribe: function(fn){
+//     // filter out of list matches to callback function--remove from list; on no match, callback remains in list; filter returns new list and reassigns observers list
+//     this.observers = this.observers.filter(function(item){
+//       if(item !== fn){
+//         return item;
+//       }
+//     });
+//     console.log(`Unsubscribed from ${fn.name}`);
+//   },
+
+//   fire: function(){
+//     this.observers.forEach(function(item){
+//       item.call();
+//     });
+//   }
+// }
+
+// same thing but with ES6 classes
+class EventObserver {
+  constructor(){
+    this.observers = [];
+  }
+
+  subscribe(fn){
+    this.observers.push(fn);
+    console.log(`Subscribed to ${fn.name}`);
+  }
+
+  unsubscribe(fn){
+    // filter out of list matches to callback function--remove from list; on no match, callback remains in list; filter returns new list and reassigns observers list
+    this.observers = this.observers.filter(function(item){
+      if(item !== fn){
+        return item;
+      }
+    });
+    console.log(`Unsubscribed from ${fn.name}`);
+  }
+
+  fire(){
+    this.observers.forEach(function(item){
+      item.call();
+    });
+  }
+}
+
+// init
+let click = new EventObserver();
+
+// event listeners
+document.querySelector('.sub-ms').addEventListener('click', function(){
+  click.subscribe(getCurMilliseconds);
+});
+
+document.querySelector('.unsub-ms').addEventListener('click', function(){
+  click.unsubscribe(getCurMilliseconds);
+});
+
+document.querySelector('.sub-s').addEventListener('click', function(){
+  click.subscribe(getCurSeconds);
+});
+
+document.querySelector('.unsub-s').addEventListener('click', function(){
+  click.unsubscribe(getCurSeconds);
+});
+
+document.querySelector('.fire').addEventListener('click', function(){
+  click.fire();
+});
+
+// click handler
+let getCurMilliseconds = function(){
+  console.log(`Current Milliseconds: ${new Date().getMilliseconds()}`);
+}
+
+let getCurSeconds = function(){
+  console.log(`Current Seconds: ${new Date().getSeconds()}`);
+}
+
