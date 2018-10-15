@@ -2387,3 +2387,67 @@ let getCurSeconds = function(){
   console.log(`Current Seconds: ${new Date().getSeconds()}`);
 }
 
+// MEDIATOR PATTERN
+// illustrated via barebones chatroom
+// takes two constructor functions: user and chat
+// users are colleagues of chatroom as mediator
+let User = function(name){
+  this.name = name;
+  this.chatroom = null;
+}
+
+// add prototypes to User constructor (could use class as syntactic sugar)
+User.prototype = {
+  // send either globally or to specific user
+  send: function(message, to){
+    // this = user
+    this.chatroom.send(message, this, to);
+  },
+  recieve: function(message, from){
+    console.log(`${from.name} to ${this.name}: ${message}`);
+  }
+}
+
+// chatroom is the mediator
+let Chatroom = function(){
+  let users = {}; // list of users
+  // console.log(users);
+  return {
+    // users must register with chatroom (colleagues must register with mediator)
+    register: function(user){
+      users[user.name] = user;
+      // set chat to current chatroom
+      user.chatroom = this;
+      // console.log(this);
+    },
+    send: function(message, from, to){
+      if(to){
+        // single user message
+        to.recieve(message, from);
+      } else {
+        // global message
+        for(key in users){
+          if(users[key] !== from){
+            users[key].recieve(message, from);
+          }
+        }
+      }
+    }
+  }
+}
+
+// use the pattern...
+// init users
+let poppy = new User('Poppy');
+let jean = new User('Jean');
+let smudge = new User('Smudge');
+// init chatroom
+let chatroom = new Chatroom();
+// register users with chatroom mediator
+chatroom.register(poppy);
+chatroom.register(jean);
+chatroom.register(smudge);
+
+jean.send('Hello world!');
+poppy.send('Is that a smudge? LOL', smudge);
+smudge.send('Haha, very funny.', poppy);
