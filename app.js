@@ -2451,3 +2451,92 @@ chatroom.register(smudge);
 jean.send('Hello world!');
 poppy.send('Is that a smudge? LOL', smudge);
 smudge.send('Haha, very funny.', poppy);
+
+console.clear();
+
+// STATE PATTERN
+// constructor function
+let PageState = function(){
+  let currentState = new homeState(this);
+
+  this.init = function(){
+    this.change(new homeState);
+  }
+
+  this.change = function(state){
+    currentState = state;
+  }
+};
+
+// Home State
+let homeState = function(page){
+  document.querySelector('#heading').textContent = null;
+  document.querySelector('#content').innerHTML = `
+    <div class="jumbotron">
+      <h1 class="display-4">Home Page!</h1>
+      <p class="lead">This is a simple hero unit, blah blah.</p>
+      <hr class="my-4">
+      <p>It uses utility classes for typography and blah.</p>
+      <a class="btn btn-primary btn-lg" role="button">This does nothing</a>
+    </div>
+  `;
+};
+
+// About State
+let aboutState = function(page){
+  document.querySelector('#heading').textContent = 'About Us';
+  document.querySelector('#content').innerHTML = `
+    <p>This is the About Page</p>
+  `;
+};
+
+// Contact State
+let contactState = function(page){
+  document.querySelector('#heading').textContent = 'Contact Us';
+  document.querySelector('#content').innerHTML = `
+    <form>
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  `;
+};
+
+// init pageState
+let page = new PageState();
+
+// init first state
+page.init();
+
+// UI variables
+let home = document.querySelector('#homeState'),
+    about = document.querySelector('#aboutState'),
+    contact = document.querySelector('#contactState');
+
+// Home
+home.addEventListener('click', (e) => {
+  page.change(new homeState);
+
+  e.preventDefault();
+});
+
+// About
+about.addEventListener('click', (e) => {
+  page.change(new aboutState);
+
+  e.preventDefault();
+});
+
+// Contact
+contact.addEventListener('click', (e) => {
+  page.change(new contactState);
+
+  e.preventDefault();
+});
+

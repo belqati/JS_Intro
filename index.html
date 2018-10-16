@@ -749,7 +749,18 @@ console.log(ItemCtrl.get(1)); // {id: 1, name: 'Jane'}</code></pre>
         <p>This pattern is also behavioral, providing an interface for communicating with "callings" (i.e., mediated objects). Its usefulness is illustrated via a chatroom, which can then be implemented with <a href="https://socket.io/" target="blank">socket.io</a> and the like. For a simple example, see <code>app.js</code>.</p>
 
       <h3>State Pattern</h3>
-        <p>This pattern </p>
+        <p>This pattern is useful for displaying different types of content depending on the state of, e.g., a given button or link. It can then be used to provide user options such as edit, list, and so forth. Brad's tutorial involves the Bootstrap nav bar, which I am not implementing here. Rather, the following buttons mimic a home page, an about page, and a contact page (not a server replacement :-).</p>
+
+        <div class="mb-3">
+          <button id="homeState" class="btn btn-outline-light">Home</button>
+          <button id="aboutState" class="btn btn-outline-light">About</button>
+          <button id="contactState" class="btn btn-outline-light">Contact</button>
+        </div>
+        <div class="container">
+          <h1 id="heading"></h1>
+          <div id="content"></div>
+        </div>
+
 
 </body>
 
